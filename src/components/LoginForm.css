@@ -1,0 +1,85 @@
+.LoginForm {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 세로 가운데 정렬 */
+  flex-direction: column;
+}
+
+.LoginForm_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  max-width: 500px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 50px 50px;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+}
+
+.idInput,
+.pwdInput {
+  font-size: 14px;
+  padding: 10px;
+  padding-right: 30px;
+  width: 100%;
+  line-height: 1.5;
+  border: none;
+  border-bottom: 1px solid rgb(165, 165, 165);
+  transition: border-color 0.3s ease; /*border-color가 0.3초 동안 부드럽게 바뀜 */
+}
+
+.idInput:focus,
+.pwdInput:focus {
+  outline: none;
+  border-bottom: 1px solid red;
+}
+
+.idInput:focus::placeholder,
+.pwdInput:focus::placeholder {
+  color: transparent;
+}
+.login_button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.loginForm_bottom {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.loginForm_bottom > div > a {
+  text-decoration: none;
+}
+
+.idInput_div,
+.pwdInput_div {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.clearButton {
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  font-size: 18px;
+  color: #999;
+  border: 1px solid blue;
+}

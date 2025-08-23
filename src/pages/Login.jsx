@@ -1,9 +1,9 @@
-import Header from "../components/Header";
+import LoginForm from "../components/LoginForm";
 
 const Login = () => {
   return (
     <div className="Login">
-      <div>로그인</div>
+      <LoginForm />
     </div>
   );
 };
