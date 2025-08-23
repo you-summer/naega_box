@@ -3,7 +3,7 @@ import Header from "../components/Header";
 const Movie = () => {
   return (
     <div>
-      <Header />
+      <Header type={"MOVIE"} />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Header from "../components/Header";
 const Myzzim = () => {
   return (
     <div>
-      <Header />
+      <Header type={"ZZIM"} />
     </div>
   );
 };

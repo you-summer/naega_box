@@ -1,5 +1,6 @@
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const navBar = [
   { id: 0, menu: "홈", url: "/" },
@@ -7,9 +8,28 @@ const navBar = [
   { id: 2, menu: "내가 찜한 리스트", url: "/myzzim" },
 ];
 
-const Header = () => {
+const Header = ({ type }) => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 컴포넌트 언마운트시 이벤트 제거
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="Header">
+    <header className={`Header ${isSticky ? "sticky" : ""} Header_${type}`}>
       <nav className="nav">
         <div className="menu_left">
           <Link to="/">로고사진</Link>

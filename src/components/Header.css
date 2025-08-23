@@ -1,10 +1,5 @@
 .Header {
   /* border: 1px solid red; */
-  background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.7) 10%,
-    transparent
-  );
   padding: 0px 5%;
   white-space: nowrap;
   /* position: sticky; */
@@ -12,6 +7,21 @@
   top: 0;
   z-index: 10;
   width: 100%;
+
+  transition: background-color 0.3s ease;
+}
+
+.Header_HOME {
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 10%,
+    transparent
+  );
+}
+
+.Header_ZZIM,
+.Header_MOVIE {
+  background-color: rgb(0, 0, 0);
 }
 
 .Header .nav {
@@ -26,15 +36,10 @@
 
 .Header .nav > div > a {
   text-decoration: none;
-  color: #e5e5e5;
+  color: rgb(212, 212, 212);
   font-size: 14px;
   transition: color 0.3s ease;
 }
-
-/* .Header .nav > div > a:hover {
-  color: rgb(218, 216, 216);
-  transition: color 0.3s ease;
-} */
 
 .Header .menu_left {
   width: 50%;
@@ -79,4 +84,10 @@
 .Header .nav .menu_left > a:hover,
 .Header .nav .menu_left > a.active {
   color: white;
+}
+
+.Header.sticky {
+  position: fixed;
+  background-color: black;
+  transition: background-color 0.5s ease;
 }
