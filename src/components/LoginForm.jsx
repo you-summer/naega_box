@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./LoginForm.css";
 import { useRef } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const url = [
   { id: 0, menu: "아이디 찾기", url: "/" },
@@ -29,7 +30,7 @@ const LoginForm = () => {
             placeholder="아이디 입력"
           />
           <button className="clearButton" onClick={onClickIdEmpty}>
-            <span>x</span>
+            <IoIosCloseCircle />
           </button>
         </div>
         <div className="pwdInput_div">
