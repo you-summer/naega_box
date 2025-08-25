@@ -37,6 +37,10 @@ const JoinForm = () => {
       );
       const user = userCredential.user;
       console.log(user);
+      await updateProfile(auth.currentUser, {
+        displayName: NAME,
+      });
+      console.log(auth.currentUser.displayName);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
