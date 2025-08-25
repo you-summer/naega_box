@@ -27,7 +27,7 @@ const LoginForm = () => {
             ref={idRef}
             type="text"
             className="idInput"
-            placeholder="아이디 입력"
+            placeholder="이메일 입력"
           />
           <button className="clearButton" onClick={onClickIdEmpty}>
             <IoIosCloseCircle />
