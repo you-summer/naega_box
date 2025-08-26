@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import "./JoinForm.css";
 import { useForm } from "react-hook-form";
 import { formFields } from "../constants/formFields.js";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../api/firebaseAPI.js";
+import { signUp, logout } from "../api/firebaseAPI.js";
+import { auth } from "../api/firebaseAPI.js";
 import {
   showLoadingAlert,
   showSuccessAlert,
   showErrorAlert,
 } from "./../util/get-sweet-alert.js";
+import { useGoogleSignUp } from "../hooks/useGoogleSignUp.jsx";
 
 const JoinForm = () => {
   const {
@@ -40,9 +41,11 @@ const JoinForm = () => {
 
       const sweetalertResult = await showSuccessAlert({
         title: "가입을 축하합니다!",
-        text: `${user.displayName}님의 회원가입을 축하합니다`,
+        text: `${user.displayName}님의 회원가입을 축하합니다, 이메일 인증 후 로그인 해주세요`,
       });
       if (sweetalertResult.isConfirmed) {
+        await logout(auth);
+        //로그아웃
         nav("/", { replace: true });
       }
     } catch (error) {
@@ -56,6 +59,8 @@ const JoinForm = () => {
       });
     }
   };
+
+  const { onClickGoogleSignUp } = useGoogleSignUp();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -95,6 +100,9 @@ const JoinForm = () => {
 
           <button className="join_button" type="submit">
             회원가입
+          </button>
+          <button type="button" onClick={onClickGoogleSignUp}>
+            구글로 회원가입하기
           </button>
         </div>
       </div>

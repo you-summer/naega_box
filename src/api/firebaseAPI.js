@@ -5,8 +5,13 @@ import {
   signInWithEmailAndPassword, // 로그인
   onAuthStateChanged, // 로그인 상태 실시간 감시
   signOut, //로그아웃
+  sendEmailVerification, // 회원가입시 이메일 인증 보내기
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase";
+
+const provider = new GoogleAuthProvider();
 
 // Auth 객체
 export const auth = getAuth(app);
@@ -21,6 +26,9 @@ export const signUp = async (EMAIL, PWD, NAME) => {
     displayName: NAME,
   });
 
+  // 이메일 인증 보내기
+  await sendEmailVerification(user);
+
   return user;
 };
 
@@ -28,6 +36,10 @@ export const signUp = async (EMAIL, PWD, NAME) => {
 export const login = async (EMAIL, PWD) => {
   const userCredential = await signInWithEmailAndPassword(auth, EMAIL, PWD);
   const user = userCredential.user;
+
+  if (!user.emailVerified) {
+    throw new Error("이메일 인증이 필요합니다");
+  }
 
   return user;
 };
@@ -40,4 +52,41 @@ export const logout = async () => {
   } catch (err) {
     console.log("로그아웃 실패", err);
   }
+};
+
+// 구글로 회원가입
+export const googleSignUp = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    console.log("구글회원가입", result);
+    return result;
+  } catch (error) {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  }
+  // .then((result) => {
+  //   // This gives you a Google Access Token. You can use it to access the Google API.
+  //   const credential = GoogleAuthProvider.credentialFromResult(result);
+  //   const token = credential.accessToken;
+  //   // The signed-in user info.
+  //   const user = result.user;
+  //   // IdP data available using getAdditionalUserInfo(result)
+  //   // ...
+  // })
+  // .catch((error) => {
+  //   // Handle Errors here.
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // The email of the user's account used.
+  //   const email = error.customData.email;
+  //   // The AuthCredential type that was used.
+  //   const credential = GoogleAuthProvider.credentialFromError(error);
+  //   // ...
+  // });
 };

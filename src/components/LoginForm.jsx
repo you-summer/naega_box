@@ -3,12 +3,17 @@ import "./LoginForm.css";
 import { useRef } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import { formFields } from "../constants/formFields";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/firebaseAPI.js";
 import { getAuth } from "firebase/auth";
 import app from "../firebase.js";
+import {
+  showLoadingAlert,
+  showSuccessAlert,
+  showErrorAlert,
+} from "../util/get-sweet-alert.js";
+import { useGoogleSignUp } from "../hooks/useGoogleSignUp.jsx";
 
 const url = [
   { id: 0, menu: "이메일 찾기", url: "/" },
@@ -36,42 +41,35 @@ const LoginForm = () => {
     // console.log(data);
     const { EMAIL, PWD } = data;
     try {
-      Swal.fire({
-        title: "로그인 중...",
-        text: "잠시만 기다려주세요.",
-        allowOutsideClick: false, //팝업 외부(바깥 배경)를 클릭해도 닫히지 않게 설정.
-        didOpen: () => {
-          Swal.showLoading();
-        },
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
-      });
+      showLoadingAlert({ title: "로그인 중...", text: "잠시만 기다려주세요" });
 
       const user = await login(EMAIL, PWD);
 
-      const sweetalertResult = await Swal.fire({
+      const sweetalertResult = await showSuccessAlert({
         title: "성공적으로 로그인되었습니다 !",
         text: `${user.displayName}님 반갑습니다!`,
-        icon: "success",
-        confirmButtonText: "메인으로",
-        confirmButtonColor: "rgb(100, 201, 100)",
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
       });
       if (sweetalertResult.isConfirmed) {
         nav("/", { replace: true });
       }
     } catch (err) {
       console.log(err);
-      Swal.fire({
-        icon: "error",
-        title: "로그인 실패!",
-        text: "이메일 혹은 비밀번호를 확인해주세요.",
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
-      });
+
+      if (err.message === "이메일 인증이 필요합니다") {
+        showErrorAlert({
+          title: "인증 필요",
+          text: "가입한 이메일로 발송된 인증 링크를 확인해주세요",
+        });
+      } else {
+        showErrorAlert({
+          title: "로그인 실패!",
+          text: "이메일 혹은 비밀번호를 확인해주세요!",
+        });
+      }
     }
   };
+
+  const { onClickGoogleLogin } = useGoogleSignUp();
 
   const auth = getAuth(app);
   console.log(auth.currentUser);
@@ -128,6 +126,9 @@ const LoginForm = () => {
           </div>
           <button className="login_button" type="submit">
             로그인
+          </button>
+          <button type="button" onClick={onClickGoogleLogin}>
+            구글로 로그인하기
           </button>
         </div>
 

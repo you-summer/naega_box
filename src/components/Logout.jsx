@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { logout } from "../api/firebaseAPI";
 import { UserStateContext } from "../App";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { showConfirmAlert } from "../util/get-sweet-alert";
 
 const Logout = () => {
