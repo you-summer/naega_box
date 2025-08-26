@@ -36,15 +36,23 @@ const Header = ({ type }) => {
     };
   }, []);
 
+  // 로그인하지 않았을시 내가 찜한 리스트 숨기기
+  const unLoginMyzzim = navBar.filter((item) => {
+    if (!currentUser.user) {
+      return item.id !== 2;
+    }
+    return true;
+  });
+
   return (
     <header className={`Header ${isSticky ? "sticky" : ""} Header_${type}`}>
       <nav className="nav">
         <div className="menu_left">
           <Link to="/">로고사진</Link>
-          {navBar.map((item) => {
+          {unLoginMyzzim.map((item) => {
             return (
               <NavLink
-                key={item.key}
+                key={item.id}
                 to={item.url}
                 className={({ isActive }) => {
                   return isActive ? "active" : "";
