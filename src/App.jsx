@@ -5,6 +5,7 @@ import Login from "./pages/login";
 import Join from "./pages/join";
 import Movie from "./pages/movie";
 import Myzzim from "./pages/Myzzim";
+import MyPage from "./pages/MyPage.jsx";
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./api/firebaseAPI.js";
@@ -35,6 +36,7 @@ function App() {
           <Route path="/join" element={<Join />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/myzzim" element={<Myzzim />} />
+          <Route path="/user/:uid" element={<MyPage />} />
         </Routes>
       </UserStateContext.Provider>
     </>

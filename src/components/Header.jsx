@@ -1,5 +1,5 @@
 import "./Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../App";
 
@@ -12,7 +12,12 @@ const navBar = [
 const Header = ({ type }) => {
   const [isSticky, setIsSticky] = useState(false);
   const currentUser = useContext(UserStateContext);
-  console.log(currentUser);
+  console.log("헤더", currentUser);
+
+  console.log(
+    "고유값",
+    currentUser?.user ? currentUser.user.uid : "로그인 안됨"
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,14 +58,14 @@ const Header = ({ type }) => {
 
         <div className="menu_right">
           <input type="text" placeholder="검색" className="searchBar" />
-          {!currentUser ? (
+          {currentUser && currentUser.user ? (
+            <Link to={`/user/${currentUser.user.uid}`}>
+              {currentUser.user.displayName}님
+            </Link>
+          ) : (
             <>
               <Link to="/login">로그인</Link>
               <Link to="/join">회원가입</Link>
-            </>
-          ) : (
-            <>
-              <div>{currentUser.user.displayName}님</div>
             </>
           )}
         </div>

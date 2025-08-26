@@ -4,6 +4,7 @@ import {
   updateProfile, // 프로필 업데이트
   signInWithEmailAndPassword, // 로그인
   onAuthStateChanged, // 로그인 상태 실시간 감시
+  signOut, //로그아웃
 } from "firebase/auth";
 import app from "../firebase";
 
@@ -29,4 +30,14 @@ export const login = async (EMAIL, PWD) => {
   const user = userCredential.user;
 
   return user;
+};
+
+// 로그아웃
+export const logout = async () => {
+  try {
+    await signOut(auth);
+    console.log("로그아웃 됨");
+  } catch (err) {
+    console.log("로그아웃 실패", err);
+  }
 };
