@@ -1,6 +1,7 @@
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserStateContext } from "../App";
 
 const navBar = [
   { id: 0, menu: "홈", url: "/" },
@@ -10,6 +11,8 @@ const navBar = [
 
 const Header = ({ type }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const currentUser = useContext(UserStateContext);
+  console.log(currentUser);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,8 +53,16 @@ const Header = ({ type }) => {
 
         <div className="menu_right">
           <input type="text" placeholder="검색" className="searchBar" />
-          <Link to="/login">로그인</Link>
-          <Link to="/join">회원가입</Link>
+          {!currentUser ? (
+            <>
+              <Link to="/login">로그인</Link>
+              <Link to="/join">회원가입</Link>
+            </>
+          ) : (
+            <>
+              <div>{currentUser.user.displayName}님</div>
+            </>
+          )}
         </div>
       </nav>
     </header>
