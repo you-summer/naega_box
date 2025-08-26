@@ -5,6 +5,11 @@ import { formFields } from "../constants/formFields.js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../api/firebaseAPI.js";
+import {
+  showLoadingAlert,
+  showSuccessAlert,
+  showErrorAlert,
+} from "./../util/get-sweet-alert.js";
 
 const JoinForm = () => {
   const {
@@ -26,28 +31,16 @@ const JoinForm = () => {
     const { NAME, EMAIL, PWD } = data;
 
     try {
-      Swal.fire({
+      showLoadingAlert({
         title: "회원가입 중...",
-        text: "잠시만 기다려주세요.",
-        allowOutsideClick: false, //팝업 외부(바깥 배경)를 클릭해도 닫히지 않게 설정.
-        didOpen: () => {
-          Swal.showLoading();
-        },
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
+        text: "잠시만 기다려주세요",
       });
-
       // 회원가입
       const user = await signUp(EMAIL, PWD, NAME);
 
-      const sweetalertResult = await Swal.fire({
+      const sweetalertResult = await showSuccessAlert({
         title: "가입을 축하합니다!",
         text: `${user.displayName}님의 회원가입을 축하합니다`,
-        icon: "success",
-        confirmButtonText: "메인으로",
-        confirmButtonColor: "rgb(100, 201, 100)",
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
       });
       if (sweetalertResult.isConfirmed) {
         nav("/", { replace: true });
@@ -57,12 +50,9 @@ const JoinForm = () => {
       const errorMessage = error.message;
       console.log("errorCode", errorCode);
       console.log("errorMessage", errorMessage);
-      Swal.fire({
-        icon: "error",
+      showErrorAlert({
         title: "회원가입 실패",
         text: "이미 사용중인 이메일입니다.",
-        showClass: { popup: "" }, // 애니메이션 제거
-        hideClass: { popup: "" },
       });
     }
   };
