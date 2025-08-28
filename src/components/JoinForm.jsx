@@ -3,8 +3,7 @@ import "./JoinForm.css";
 import { useForm } from "react-hook-form";
 import { formFields } from "../constants/formFields.js";
 import { useNavigate } from "react-router-dom";
-import { signUp, logout } from "../api/firebaseAPI.js";
-import { auth } from "../api/firebaseAPI.js";
+import { signUp, logout, auth } from "../api/firebaseAPI.js";
 import {
   showLoadingAlert,
   showSuccessAlert,
@@ -26,6 +25,9 @@ const JoinForm = () => {
   // "all" → 입력/블러/제출 모두 검증
 
   const nav = useNavigate();
+
+  const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -63,6 +65,7 @@ const JoinForm = () => {
   const mode = "join";
   const { onClickGoogleAuth } = useGoogleAuth(mode);
 
+  const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="JoinForm">
@@ -105,6 +108,7 @@ const JoinForm = () => {
           <button type="button" onClick={onClickGoogleAuth}>
             구글로 회원가입하기
           </button>
+          <Link to={onClickKakaoAuth}>카카오계정으로 회원가입하기</Link>
         </div>
       </div>
     </form>

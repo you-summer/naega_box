@@ -9,6 +9,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   getAdditionalUserInfo,
+  OAuthProvider,
+  signInWithCredential,
 } from "firebase/auth";
 import app from "../firebase";
 
@@ -55,6 +57,12 @@ export const logout = async () => {
   }
 };
 
+// 회원탈퇴
+export const userDelete = async () => {
+  const user = auth.currentUser; // 현재 로그인중인 사용자가져오기
+  await user.delete();
+};
+
 // 구글로 회원가입
 export const googleSignUp = async () => {
   try {
@@ -76,4 +84,17 @@ export const googleSignUp = async () => {
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   }
+};
+
+const kakaoProvider = new OAuthProvider("oidc.kakao");
+// 카카오 계정으로 로그인
+export const kakaoSignUp = async (idToken) => {
+  const credential = kakaoProvider.credential({
+    idToken: idToken,
+  });
+  const result = await signInWithCredential(getAuth(), credential);
+  const user = result.user;
+  const photoURL = user.photoURL; //프로필사진
+  // console.log("result", result, ", user", user);
+  return user;
 };

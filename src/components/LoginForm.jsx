@@ -71,6 +71,9 @@ const LoginForm = () => {
 
   const mode = "login";
   const { onClickGoogleAuth } = useGoogleAuth(mode);
+  const onClickKakaoAuth = () => {
+    alert("잠만");
+  };
 
   const auth = getAuth(app);
   console.log(auth.currentUser);
@@ -130,6 +133,9 @@ const LoginForm = () => {
           </button>
           <button type="button" onClick={onClickGoogleAuth}>
             구글로 로그인하기
+          </button>
+          <button type="button" onClick={onClickKakaoAuth}>
+            카카오계정으로 로그인하기
           </button>
         </div>
 

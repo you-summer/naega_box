@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { logout } from "../api/firebaseAPI";
+import { logout, userDelete } from "../api/firebaseAPI";
 import { UserStateContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { showConfirmAlert } from "../util/get-sweet-alert";
@@ -17,9 +17,21 @@ const Logout = () => {
     }
   };
 
+  const onClickUserDelete = async () => {
+    const result = await showConfirmAlert({
+      title: "정말 탈퇴하시겠습니까?",
+      text: "되돌릴 수 없습니다",
+    });
+    if (result.isConfirmed) {
+      await userDelete();
+      nav("/", { replace: true });
+    }
+  };
+
   return (
     <div>
       <button onClick={onClickLogout}>로그아웃!!!!!</button>
+      <button onClick={onClickUserDelete}>회원탈퇴</button>
     </div>
   );
 };
