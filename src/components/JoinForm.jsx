@@ -65,7 +65,7 @@ const JoinForm = () => {
   const mode = "join";
   const { onClickGoogleAuth } = useGoogleAuth(mode);
 
-  const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}`;
+  const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&state=${mode}`;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="JoinForm">

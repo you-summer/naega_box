@@ -9,6 +9,8 @@ const KAkaoAuthCallback = () => {
   useEffect(() => {
     const code = new URL(document.URL).searchParams.get("code");
     // console.log("카카오 인가코드", code);
+    const mode = new URL(document.URL).searchParams.get("state");
+    console.log("모드: ", mode);
 
     const getToken = async () => {
       const res = await fetch(`https://kauth.kakao.com/oauth/token`, {
@@ -31,11 +33,19 @@ const KAkaoAuthCallback = () => {
       const user = await kakaoSignUp(data.id_token);
       console.log("user", user);
       if (user) {
-        await showSuccessAlert({
-          title: "가입을 축하합니다!",
-          text: `${user.displayName}님의 회원가입을 축하합니다`,
-        });
-        nav("/", { replace: true });
+        if (mode === "join") {
+          await showSuccessAlert({
+            title: "가입을 축하합니다!",
+            text: `${user.displayName}님의 회원가입을 축하합니다`,
+          });
+          nav("/", { replace: true });
+        } else if (mode === "login") {
+          await showSuccessAlert({
+            title: "로그인 되었습니다",
+            text: `${user.displayName}님의 반갑습니다!`,
+          });
+          nav("/", { replace: true });
+        }
       }
     };
     getToken();

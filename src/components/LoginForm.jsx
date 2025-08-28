@@ -22,6 +22,8 @@ const url = [
 ];
 
 const LoginForm = () => {
+  const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+  const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
   const nav = useNavigate();
   const emailRef = useRef();
   const onClickIdEmpty = () => {
@@ -71,9 +73,7 @@ const LoginForm = () => {
 
   const mode = "login";
   const { onClickGoogleAuth } = useGoogleAuth(mode);
-  const onClickKakaoAuth = () => {
-    alert("잠만");
-  };
+  const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&state=${mode}`;
 
   const auth = getAuth(app);
   console.log(auth.currentUser);
@@ -134,9 +134,7 @@ const LoginForm = () => {
           <button type="button" onClick={onClickGoogleAuth}>
             구글로 로그인하기
           </button>
-          <button type="button" onClick={onClickKakaoAuth}>
-            카카오계정으로 로그인하기
-          </button>
+          <Link to={onClickKakaoAuth}>카카오계정으로 로그인하기</Link>
         </div>
 
         <div className="loginForm_bottom">
