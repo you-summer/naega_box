@@ -40,9 +40,10 @@ export const showErrorAlert = ({ title, text }) => {
 };
 
 // 단순 확인용 alert
-export const showConfirmAlert = async ({ title }) => {
+export const showConfirmAlert = async ({ title, text }) => {
   return Swal.fire({
     title: title,
+    text: text,
     showCancelButton: true,
     confirmButtonColor: "rgb(100, 201, 100)",
     confirmButtonText: "확인",

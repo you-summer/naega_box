@@ -10,7 +10,7 @@ import {
   showSuccessAlert,
   showErrorAlert,
 } from "./../util/get-sweet-alert.js";
-import { useGoogleSignUp } from "../hooks/useGoogleSignUp.jsx";
+import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
 
 const JoinForm = () => {
   const {
@@ -60,7 +60,8 @@ const JoinForm = () => {
     }
   };
 
-  const { onClickGoogleSignUp } = useGoogleSignUp();
+  const mode = "join";
+  const { onClickGoogleAuth } = useGoogleAuth(mode);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,7 +102,7 @@ const JoinForm = () => {
           <button className="join_button" type="submit">
             회원가입
           </button>
-          <button type="button" onClick={onClickGoogleSignUp}>
+          <button type="button" onClick={onClickGoogleAuth}>
             구글로 회원가입하기
           </button>
         </div>

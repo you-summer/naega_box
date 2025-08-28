@@ -13,7 +13,7 @@ import {
   showSuccessAlert,
   showErrorAlert,
 } from "../util/get-sweet-alert.js";
-import { useGoogleSignUp } from "../hooks/useGoogleSignUp.jsx";
+import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
 
 const url = [
   { id: 0, menu: "이메일 찾기", url: "/" },
@@ -69,7 +69,8 @@ const LoginForm = () => {
     }
   };
 
-  const { onClickGoogleLogin } = useGoogleSignUp();
+  const mode = "login";
+  const { onClickGoogleAuth } = useGoogleAuth(mode);
 
   const auth = getAuth(app);
   console.log(auth.currentUser);
@@ -127,7 +128,7 @@ const LoginForm = () => {
           <button className="login_button" type="submit">
             로그인
           </button>
-          <button type="button" onClick={onClickGoogleLogin}>
+          <button type="button" onClick={onClickGoogleAuth}>
             구글로 로그인하기
           </button>
         </div>

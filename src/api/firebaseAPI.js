@@ -8,6 +8,7 @@ import {
   sendEmailVerification, // 회원가입시 이메일 인증 보내기
   GoogleAuthProvider,
   signInWithPopup,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 import app from "../firebase";
 
@@ -58,8 +59,13 @@ export const logout = async () => {
 export const googleSignUp = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-    console.log("구글회원가입", result);
-    return result;
+    // console.log("구글회원가입", result);
+    console.log("새회원인지알아보기", getAdditionalUserInfo(result));
+    const isNewUser = getAdditionalUserInfo(result).isNewUser;
+    const googleUserName = getAdditionalUserInfo(result).profile.name;
+    const googoleProfilePic = getAdditionalUserInfo(result).profile.picture;
+
+    return { result, isNewUser, googleUserName, googoleProfilePic };
   } catch (error) {
     // Handle Errors here.
     const errorCode = error.code;
@@ -70,23 +76,4 @@ export const googleSignUp = async () => {
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   }
-  // .then((result) => {
-  //   // This gives you a Google Access Token. You can use it to access the Google API.
-  //   const credential = GoogleAuthProvider.credentialFromResult(result);
-  //   const token = credential.accessToken;
-  //   // The signed-in user info.
-  //   const user = result.user;
-  //   // IdP data available using getAdditionalUserInfo(result)
-  //   // ...
-  // })
-  // .catch((error) => {
-  //   // Handle Errors here.
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // The email of the user's account used.
-  //   const email = error.customData.email;
-  //   // The AuthCredential type that was used.
-  //   const credential = GoogleAuthProvider.credentialFromError(error);
-  //   // ...
-  // });
 };
