@@ -6,7 +6,8 @@ import Join from "./pages/join";
 import Movie from "./pages/movie";
 import Myzzim from "./pages/Myzzim";
 import MyPage from "./pages/MyPage.jsx";
-import KakaoAuthCallback from "./components/KakaoAuthCallback.jsx";
+import KakaoAuthCallback from "./pages/KakaoAuthCallback.jsx";
+import KakaoAuthLogout from "./pages/KakaoAuthLogout.jsx";
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./api/firebaseAPI.js";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/myzzim" element={<Myzzim />} />
           <Route path="/user/:uid" element={<MyPage />} />
           <Route path="/auth" element={<KakaoAuthCallback />} />
+          <Route path="/auth/kakao/logout" element={<KakaoAuthLogout />} />
         </Routes>
       </UserStateContext.Provider>
     </>

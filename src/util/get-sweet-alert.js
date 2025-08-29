@@ -12,6 +12,7 @@ export const showLoadingAlert = ({ title, text }) => {
     showClass: { popup: "" }, // 애니메이션 제거
     hideClass: { popup: "" },
   });
+  return () => Swal.close();
 };
 
 // 성공 알림

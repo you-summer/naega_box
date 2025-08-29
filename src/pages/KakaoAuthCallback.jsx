@@ -29,7 +29,7 @@ const KAkaoAuthCallback = () => {
       const data = await res.json();
       console.log("진짜이게토큰이라고?", data);
 
-      // firebase에 카카오계정으로 로그이 혹은 회원가입 시도
+      //   firebase에 카카오계정으로 로그이 혹은 회원가입 시도
       const user = await kakaoSignUp(data.id_token);
       console.log("user", user);
       if (user) {
@@ -42,7 +42,7 @@ const KAkaoAuthCallback = () => {
         } else if (mode === "login") {
           await showSuccessAlert({
             title: "로그인 되었습니다",
-            text: `${user.displayName}님의 반갑습니다!`,
+            text: `${user.displayName}님 반갑습니다!`,
           });
           nav("/", { replace: true });
         }
