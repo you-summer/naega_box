@@ -75,3 +75,9 @@
   font-size: 12px;
   padding: 10px;
 }
+
+.google_kakao_join_div {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}

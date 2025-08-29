@@ -14,6 +14,7 @@ import {
   showErrorAlert,
 } from "../util/get-sweet-alert.js";
 import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
+import Button from "./Button.jsx";
 
 const url = [
   { id: 0, menu: "이메일 찾기", url: "/" },
@@ -128,13 +129,24 @@ const LoginForm = () => {
               })}
             />
           </div>
-          <button className="login_button" type="submit">
-            로그인
-          </button>
-          <button type="button" onClick={onClickGoogleAuth}>
-            구글로 로그인하기
-          </button>
-          <Link to={onClickKakaoAuth}>카카오계정으로 로그인하기</Link>
+          <Button type={"RED"} text={"로그인"} submit />
+
+          <div className="google_kakao_login_button">
+            <Button
+              type={"GOOGLE"}
+              text={"구글 로그인"}
+              onClick={onClickGoogleAuth}
+            />
+
+            <Button
+              type={"KAKAO"}
+              text={"카카오 로그인"}
+              url={onClickKakaoAuth}
+            />
+            {/* <Link className="kakao_login_button" to={onClickKakaoAuth}>
+              카카오 로그인
+            </Link> */}
+          </div>
         </div>
 
         <div className="loginForm_bottom">

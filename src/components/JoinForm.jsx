@@ -10,6 +10,7 @@ import {
   showErrorAlert,
 } from "./../util/get-sweet-alert.js";
 import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
+import Button from "./Button.jsx";
 
 const JoinForm = () => {
   const {
@@ -102,13 +103,19 @@ const JoinForm = () => {
             );
           })}
 
-          <button className="join_button" type="submit">
-            회원가입
-          </button>
-          <button type="button" onClick={onClickGoogleAuth}>
-            구글로 회원가입하기
-          </button>
-          <Link to={onClickKakaoAuth}>카카오계정으로 회원가입하기</Link>
+          <Button text={"회원가입"} type={"RED"} submit />
+          <div className="google_kakao_join_div">
+            <Button
+              type={"GOOGLE"}
+              onClick={onClickGoogleAuth}
+              text={"구글로 가입"}
+            />
+            <Button
+              type={"KAKAO"}
+              text={"카카오 회원가입"}
+              url={onClickKakaoAuth}
+            />
+          </div>
         </div>
       </div>
     </form>

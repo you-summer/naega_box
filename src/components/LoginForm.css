@@ -41,7 +41,7 @@
   color: transparent;
 }
 
-.LoginForm .login_button {
+/* .LoginForm .login_button {
   width: 100%;
   padding: 13px;
   margin-top: 10px;
@@ -52,7 +52,7 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
-}
+} */
 
 .LoginForm .loginForm_bottom {
   display: flex;
@@ -85,4 +85,46 @@
   color: #999;
   padding: 10px;
   margin: 0;
+}
+
+.LoginForm .google_login_button {
+  background-image: url("../assets/g-logo.png");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 10px center; /* 왼쪽 안쪽에 아이콘 위치 */
+  padding-left: 30px;
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.LoginForm .kakao_login_button {
+  background-image: url("../assets/k-logo.png");
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: 10px center; /* 왼쪽 안쪽에 아이콘 위치 */
+  padding-left: 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 13px;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #fee500;
+  text-decoration-line: none;
+}
+
+.LoginForm .google_kakao_login_button {
+  display: flex;
+  width: 100%;
+  gap: 5px;
 }
