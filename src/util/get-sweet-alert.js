@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { pwdReset } from "../api/firebaseAPI";
 
 // 로딩 알림
 export const showLoadingAlert = ({ title, text }) => {
@@ -52,4 +53,32 @@ export const showConfirmAlert = async ({ title, text }) => {
     showClass: { popup: "" }, // 애니메이션 제거
     hideClass: { popup: "" },
   });
+};
+
+// input 모달
+export const inputAlert = async () => {
+  const { value: email } = await Swal.fire({
+    title: "비밀번호 재설정하기",
+    text: "비밀번호를 재설정할 이메일을 적어주세요",
+    input: "email",
+    inputPlaceholder: "example@email.com",
+    inputAttributes: {
+      autocapitalize: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "발송!",
+    cancelButtonText: "취소",
+    showLoaderOnConfirm: true,
+    inputValidator: (value) => {
+      // 빈 값이면
+      if (!value) {
+        return "이메일을 입력해주세요";
+      }
+      if (!value.includes("@")) {
+        return "올바른 이메일 형식이 아닙니다";
+      }
+    },
+  });
+
+  return email;
 };

@@ -5,13 +5,14 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { formFields } from "../constants/formFields";
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/firebaseAPI.js";
-import { getAuth } from "firebase/auth";
-import app from "../firebase.js";
+import { login, pwdReset } from "../api/firebaseAPI.js";
+// import { getAuth } from "firebase/auth";
+// import app from "../firebase.js";
 import {
   showLoadingAlert,
   showSuccessAlert,
   showErrorAlert,
+  inputAlert,
 } from "../util/get-sweet-alert.js";
 import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
 import Button from "./Button.jsx";
@@ -76,8 +77,8 @@ const LoginForm = () => {
   const { onClickGoogleAuth } = useGoogleAuth(mode);
   const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&state=${mode}`;
 
-  const auth = getAuth(app);
-  console.log(auth.currentUser);
+  // const auth = getAuth(app);
+  // console.log(auth.currentUser);
 
   const emailField = formFields.find((f) => {
     return f.name === "EMAIL";
@@ -85,6 +86,29 @@ const LoginForm = () => {
   const pwdField = formFields.find((f) => {
     return f.name === "PWD";
   });
+
+  const onClickResetPwd = async () => {
+    const email = await inputAlert();
+    if (!email) {
+      return;
+    }
+    try {
+      await pwdReset(email);
+      const sweetalertResult = await showSuccessAlert({
+        title: "발송 완료",
+        text: `${email}로 비밀번호 재설정 메일을 보냈습니다!`,
+      });
+      if (sweetalertResult.isConfirmed) {
+        nav("/", { replace: true });
+      }
+    } catch (error) {
+      console.log(error);
+      showErrorAlert({
+        title: "실패",
+        text: "해당 이메일을 찾을 수 없거나 오류가 발생했습니다.",
+      });
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -130,7 +154,6 @@ const LoginForm = () => {
             />
           </div>
           <Button type={"RED"} text={"로그인"} submit />
-
           <div className="google_kakao_login_button">
             <Button
               type={"GOOGLE"}
@@ -143,14 +166,18 @@ const LoginForm = () => {
               text={"카카오 로그인"}
               url={onClickKakaoAuth}
             />
-            {/* <Link className="kakao_login_button" to={onClickKakaoAuth}>
-              카카오 로그인
-            </Link> */}
           </div>
         </div>
 
         <div className="loginForm_bottom">
-          {url.map((item) => {
+          <div onClick={onClickResetPwd}>
+            이메일 또는 비밀번호를 잊어버리셨나요?
+          </div>
+          |
+          <div>
+            <Link to={"/join"}>회원가입</Link>
+          </div>
+          {/* {url.map((item) => {
             return (
               <div>
                 <Link key={item.id} to={item.url}>
@@ -158,7 +185,7 @@ const LoginForm = () => {
                 </Link>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
     </form>

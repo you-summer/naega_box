@@ -11,6 +11,7 @@ import {
   getAdditionalUserInfo,
   OAuthProvider,
   signInWithCredential,
+  sendPasswordResetEmail, // 비밀번호 재설정 이메일보내기
 } from "firebase/auth";
 import app from "../firebase";
 
@@ -97,4 +98,20 @@ export const kakaoSignUp = async (idToken) => {
   const photoURL = user.photoURL; //프로필사진
   // console.log("result", result, ", user", user);
   return user;
+};
+
+// 비밀번호 재설정 이메일 보내기
+export const pwdReset = async (email) => {
+  await sendPasswordResetEmail(auth, email);
+  try {
+    const message = `${email}로 발송을 완료했습니다`;
+    return message;
+  } catch {
+    (error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      alert(errorCode, errorMessage, error);
+    };
+  }
 };
