@@ -1,0 +1,9 @@
+.MyPage .MyPage_content_wrapper {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 40px auto;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+}

@@ -2,6 +2,7 @@ import "./Header.css";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../App";
+import LogoImg from "../assets/NAEGA_BOX_LOGO7.png";
 
 const navBar = [
   { id: 0, menu: "홈", url: "/" },
@@ -49,11 +50,7 @@ const Header = ({ type }) => {
       <nav className="nav">
         <div className="menu_left">
           <Link to="/" className="logo">
-            <img
-              src="src/assets/NAEGA_BOX_LOGO7.png"
-              alt=""
-              className="NAEGA_BOX_LOGO"
-            />
+            <img src={LogoImg} alt="" className="NAEGA_BOX_LOGO" />
           </Link>
           {unLoginMyzzim.map((item) => {
             return (

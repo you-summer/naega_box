@@ -1,8 +1,8 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../api/firebaseAPI";
-import { UserStateContext } from "../App";
-import { showLoadingAlert } from "../util/get-sweet-alert";
+import { logout } from "../../api/firebaseAPI";
+import { UserStateContext } from "../../App";
+import { showLoadingAlert } from "../../util/get-sweet-alert";
 
 const KakaoAuthLogout = () => {
   const { setUser } = useContext(UserStateContext);

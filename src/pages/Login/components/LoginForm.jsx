@@ -3,9 +3,9 @@ import "./LoginForm.css";
 import { useRef } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
-import { formFields } from "../constants/formFields";
+import { formFields } from "../../../constants/formFields.js";
 import { useNavigate } from "react-router-dom";
-import { login, pwdReset } from "../api/firebaseAPI.js";
+import { login, pwdReset } from "../../../api/firebaseAPI.js";
 // import { getAuth } from "firebase/auth";
 // import app from "../firebase.js";
 import {
@@ -13,9 +13,9 @@ import {
   showSuccessAlert,
   showErrorAlert,
   inputAlert,
-} from "../util/get-sweet-alert.js";
-import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
-import Button from "./Button.jsx";
+} from "../../../util/get-sweet-alert.js";
+import { useGoogleAuth } from "../../../hooks/useGoogleAuth.jsx";
+import Button from "../../../components/Button.jsx";
 
 // const url = [
 //   { id: 0, menu: "이메일 찾기", url: "/" },

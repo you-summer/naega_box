@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { kakaoSignUp } from "../api/firebaseAPI";
+import { kakaoSignUp } from "../../api/firebaseAPI";
 import { useNavigate } from "react-router-dom";
-import { showSuccessAlert } from "../util/get-sweet-alert";
+import { showSuccessAlert } from "../../util/get-sweet-alert";
 
 const KAkaoAuthCallback = () => {
   const nav = useNavigate();

@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import "./JoinForm.css";
 import { useForm } from "react-hook-form";
-import { formFields } from "../constants/formFields.js";
+import { formFields } from "../../../constants/formFields.js";
 import { useNavigate } from "react-router-dom";
-import { signUp, logout, auth } from "../api/firebaseAPI.js";
+import { signUp, logout, auth } from "../../../api/firebaseAPI.js";
 import {
   showLoadingAlert,
   showSuccessAlert,
   showErrorAlert,
-} from "./../util/get-sweet-alert.js";
-import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
-import Button from "./Button.jsx";
+} from "../../../util/get-sweet-alert.js";
+import { useGoogleAuth } from "../../../hooks/useGoogleAuth.jsx";
+import Button from "../../../components/Button.jsx";
 
 const JoinForm = () => {
   const {

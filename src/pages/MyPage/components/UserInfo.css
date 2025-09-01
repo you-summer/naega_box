@@ -1,0 +1,18 @@
+.UserInfo {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 100%;
+}
+
+.UserInfo .user_profile_img {
+  width: 100px;
+  height: auto;
+  border-radius: 100px;
+}
+
+.UserInfo .user_profile_img_div {
+  border: 1px solid blue;
+  display: flex;
+}
