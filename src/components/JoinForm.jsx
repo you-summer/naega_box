@@ -71,9 +71,17 @@ const JoinForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="JoinForm">
         <div className="JoinForm_div">
-          <div>로고사진</div>
+          <div className="logo_div">
+            <Link to={"/"}>
+              <img
+                src="src/assets/NAEGA_BOX_LOGO7.png"
+                alt=""
+                className="logo"
+              />
+            </Link>
+          </div>
 
-          <h2>회원가입</h2>
+          {/* <h2>회원가입</h2> */}
           {formFields.map((item) => {
             return (
               <div

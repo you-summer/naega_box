@@ -37,6 +37,8 @@
 }
 
 .Header .nav > div > a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: rgb(212, 212, 212);
   font-size: 14px;
@@ -47,6 +49,7 @@
   width: 50%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   transition: color 0.3s ease;
 }
 
@@ -96,4 +99,9 @@
 
 .Header .menu_right > div {
   color: white;
+}
+
+.Header .NAEGA_BOX_LOGO {
+  width: auto;
+  height: 31px;
 }

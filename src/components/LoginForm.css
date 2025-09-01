@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
   max-width: 500px;
   width: 100%;
   border-radius: 5px;
@@ -58,6 +58,9 @@
   position: relative;
   display: flex;
 }
+.LoginForm .pwdInput_div {
+  padding-bottom: 5px;
+}
 
 .LoginForm .clearButton {
   border: none;
@@ -76,9 +79,18 @@
 .LoginForm .google_kakao_login_button {
   display: flex;
   width: 100%;
-  gap: 5px;
+  gap: 10px;
 }
 
 .LoginForm .loginForm_bottom > div {
   cursor: pointer;
+}
+
+.LoginForm .logo {
+  width: auto;
+  height: 50px;
+}
+
+.LoginForm .logo_div {
+  margin-bottom: 30px;
 }

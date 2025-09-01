@@ -81,3 +81,16 @@
   width: 100%;
   gap: 5px;
 }
+
+.JoinForm .logo {
+  width: auto;
+  height: 50px;
+}
+
+.JoinForm .logo_div {
+  margin-bottom: 20px;
+}
+
+.JoinForm .JoinForm_div > button:first-of-type {
+  margin-top: 15px;
+}

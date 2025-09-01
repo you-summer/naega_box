@@ -17,11 +17,11 @@ import {
 import { useGoogleAuth } from "../hooks/useGoogleAuth.jsx";
 import Button from "./Button.jsx";
 
-const url = [
-  { id: 0, menu: "이메일 찾기", url: "/" },
-  { id: 1, menu: "비밀번호 찾기", url: "/" },
-  { id: 2, menu: "회원가입", url: "/join" },
-];
+// const url = [
+//   { id: 0, menu: "이메일 찾기", url: "/" },
+//   { id: 1, menu: "비밀번호 찾기", url: "/" },
+//   { id: 2, menu: "회원가입", url: "/join" },
+// ];
 
 const LoginForm = () => {
   const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
@@ -114,9 +114,16 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="LoginForm">
         <div className="LoginForm_div">
-          <div>로고사진</div>
+          <div className="logo_div">
+            <Link to={"/"}>
+              <img
+                src="src/assets/NAEGA_BOX_LOGO7.png"
+                alt=""
+                className="logo"
+              />
+            </Link>
+          </div>
 
-          <h2>로그인</h2>
           <div className="emailInput_div">
             <input
               ref={emailRef}
@@ -170,10 +177,7 @@ const LoginForm = () => {
         </div>
 
         <div className="loginForm_bottom">
-          <div onClick={onClickResetPwd}>
-            이메일 또는 비밀번호를 잊어버리셨나요?
-          </div>
-          |
+          <div onClick={onClickResetPwd}>비밀번호를 잊어버리셨나요?</div>|
           <div>
             <Link to={"/join"}>회원가입</Link>
           </div>

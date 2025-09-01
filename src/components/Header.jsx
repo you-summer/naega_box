@@ -48,7 +48,13 @@ const Header = ({ type }) => {
     <header className={`Header ${isSticky ? "sticky" : ""} Header_${type}`}>
       <nav className="nav">
         <div className="menu_left">
-          <Link to="/">로고사진</Link>
+          <Link to="/" className="logo">
+            <img
+              src="src/assets/NAEGA_BOX_LOGO7.png"
+              alt=""
+              className="NAEGA_BOX_LOGO"
+            />
+          </Link>
           {unLoginMyzzim.map((item) => {
             return (
               <NavLink
