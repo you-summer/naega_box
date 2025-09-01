@@ -1,5 +1,5 @@
 .UserInfo {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -12,7 +12,63 @@
   border-radius: 100px;
 }
 
-.UserInfo .user_profile_img_div {
-  border: 1px solid blue;
+.UserInfo .user_profile_img_wrapper {
+  /* border: 1px solid blue; */
   display: flex;
+}
+
+.UserInfo .userInfo_profile_info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  gap: 3px;
+}
+
+.UserInfo .userInfo_name > h4 {
+  font-size: 1.3rem;
+}
+
+.UserInfo .userInfo_email {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.UserInfo .userInfo_hr {
+  border: none; /* 기본 테두리 제거 */
+  height: 0.5px; /* 높이 지정 */
+  background-color: #ededed; /* 색 지정 */
+  margin: 20px 0; /* 위아래 여백*/
+}
+
+.UserInfo .userInfo_reviews_wrapper {
+  display: flex;
+  /* padding: 5px; */
+  /* justify-content: space-between; */
+}
+
+.UserInfo .userInfo_reviews_wrapper .userInfo_reviews {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  text-decoration: none;
+}
+
+.UserInfo .userInfo_reviews_span {
+  display: flex;
+  align-items: center;
+  color: #ededed;
+}
+
+.UserInfo .userInfo_reviews .userInfo_reviews1 {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.UserInfo .userInfo_reviews2 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: rgb(32, 32, 32);
 }
