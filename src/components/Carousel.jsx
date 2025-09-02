@@ -12,6 +12,8 @@ import "./Carousel.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
+import eximage from "../assets/NAEGA_BOX_LOGO5.png";
+
 export default function Carousel() {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
@@ -19,6 +21,30 @@ export default function Carousel() {
     progressCircle.current.style.setProperty("--progress", 1 - progress);
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
+
+  const KOBIS_API_KEY = import.meta.env.VITE_KOBIS_API_KEY;
+
+  let boxOfficeDate = () => {
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth() + 1;
+    let date = new Date().getDate() - 1;
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    if (date < 10) {
+      date = `0${date}`;
+    }
+    return `${year}${month}${date}`;
+  };
+
+  const boxOfficeDaily = async () => {
+    let targetDt = boxOfficeDate();
+    let url = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOBIS_API_KEY}&targetDt=${targetDt}`;
+    let res = await fetch(url);
+    let data = await res.json();
+    console.log("박스오피스", data);
+  };
+  boxOfficeDaily();
   return (
     <>
       <Swiper
@@ -36,7 +62,12 @@ export default function Carousel() {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>
+          <div>
+            <img src={eximage}></img>
+            <div>Slide 1</div>
+          </div>
+        </SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
@@ -45,6 +76,8 @@ export default function Carousel() {
         <SwiperSlide>Slide 7</SwiperSlide>
         <SwiperSlide>Slide 8</SwiperSlide>
         <SwiperSlide>Slide 9</SwiperSlide>
+        <SwiperSlide>Slide 10</SwiperSlide>
+
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20"></circle>
