@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../api/firebaseAPI";
+import { logout } from "../../api/firebaseAuth";
 import { UserStateContext } from "../../App";
 import { showLoadingAlert } from "../../util/get-sweet-alert";
 

@@ -1,4 +1,4 @@
-import { googleSignUp } from "../api/firebaseAPI";
+import { googleSignUp } from "../api/firebaseAuth";
 import { showSuccessAlert } from "../util/get-sweet-alert";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { logout, userDelete } from "../api/firebaseAPI";
+import { logout, userDelete } from "../api/firebaseAuth";
 import { UserStateContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import { showConfirmAlert } from "../util/get-sweet-alert";

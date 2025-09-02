@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { pwdReset } from "../api/firebaseAPI";
+import { pwdReset } from "../api/firebaseAuth";
 
 // 로딩 알림
 export const showLoadingAlert = ({ title, text }) => {

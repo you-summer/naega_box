@@ -5,7 +5,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { formFields } from "../../../constants/formFields.js";
 import { useNavigate } from "react-router-dom";
-import { login, pwdReset } from "../../../api/firebaseAPI.js";
+import { login, pwdReset } from "../../../api/firebaseAuth.js";
 // import { getAuth } from "firebase/auth";
 // import app from "../firebase.js";
 import {
@@ -17,29 +17,22 @@ import {
 import { useGoogleAuth } from "../../../hooks/useGoogleAuth.jsx";
 import Button from "../../../components/Button.jsx";
 
-// const url = [
-//   { id: 0, menu: "이메일 찾기", url: "/" },
-//   { id: 1, menu: "비밀번호 찾기", url: "/" },
-//   { id: 2, menu: "회원가입", url: "/join" },
-// ];
-
 const LoginForm = () => {
   const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
   const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
   const nav = useNavigate();
-  const emailRef = useRef();
-  const onClickIdEmpty = () => {
-    // console.log(emailRef.current.value);
-    emailRef.current.value = "";
-  };
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     mode: "onBlur", // <- input에서 포커스가 나갈 때 검증
   });
+
+  const onClickIdEmpty = () => {
+    setValue("EMAIL", "");
+  };
 
   const onSubmit = async (data) => {
     // console.log(data);
@@ -76,9 +69,6 @@ const LoginForm = () => {
   const mode = "login";
   const { onClickGoogleAuth } = useGoogleAuth(mode);
   const onClickKakaoAuth = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&state=${mode}`;
-
-  // const auth = getAuth(app);
-  // console.log(auth.currentUser);
 
   const emailField = formFields.find((f) => {
     return f.name === "EMAIL";
@@ -126,7 +116,6 @@ const LoginForm = () => {
 
           <div className="emailInput_div">
             <input
-              ref={emailRef}
               type="email"
               className="emailInput"
               placeholder="이메일 입력"
@@ -181,15 +170,6 @@ const LoginForm = () => {
           <div>
             <Link to={"/join"}>회원가입</Link>
           </div>
-          {/* {url.map((item) => {
-            return (
-              <div>
-                <Link key={item.id} to={item.url}>
-                  {item.menu}
-                </Link>
-              </div>
-            );
-          })} */}
         </div>
       </div>
     </form>

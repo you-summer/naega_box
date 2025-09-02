@@ -3,7 +3,7 @@ import "./JoinForm.css";
 import { useForm } from "react-hook-form";
 import { formFields } from "../../../constants/formFields.js";
 import { useNavigate } from "react-router-dom";
-import { signUp, logout, auth } from "../../../api/firebaseAPI.js";
+import { signUp, logout, auth } from "../../../api/firebaseAuth.js";
 import {
   showLoadingAlert,
   showSuccessAlert,

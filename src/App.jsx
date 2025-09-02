@@ -10,7 +10,7 @@ import KakaoAuthCallback from "./pages/KakaoAuth/KakaoAuthCallback.jsx";
 import KakaoAuthLogout from "./pages/KakaoAuth/KakaoAuthLogout.jsx";
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./api/firebaseAPI.js";
+import { auth } from "./api/firebaseAuth.js";
 
 export const UserStateContext = createContext();
 
