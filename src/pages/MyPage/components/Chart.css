@@ -5,3 +5,42 @@
   padding: 20px;
   width: 100%;
 }
+
+.Chart .chart_content_wrapper {
+  display: flex;
+}
+
+.Chart .chart_content_wrapper .chart_content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 5px;
+}
+
+.Chart .chart_content_title {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.Chart .chart_content_content {
+  color: rgb(22, 22, 22);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.Chart .chart_title {
+  font-size: 1.3rem;
+}
+.Chart .chart_chart_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.Chart .chart_hr {
+  border: none; /* 기본 테두리 제거 */
+  height: 0.5px; /* 높이 지정 */
+  background-color: #ededed; /* 색 지정 */
+  margin: 20px 0; /* 위아래 여백*/
+}
