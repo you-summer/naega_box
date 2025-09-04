@@ -54,16 +54,27 @@ export default function Carousel() {
       let kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&title=${apiMovieTitle}&releaseDts=${relDate}&ServiceKey=${KMDB_API_KEY}`;
       let kmdbRes = await fetch(kmdbUrl);
       let data = await kmdbRes.json();
+      let still = await data.Data[0].Result[0].stlls;
+      let stillFirstImage = await still.split("|")[0];
+      let stillImg = stillFirstImage
+        .replace("thm/01", "still")
+        .replace("tn_", "")
+        .replace(".jpg", "_01.jpg")
+        .replace(".JPG", "_01.jpg");
+      console.log("이미지", stillImg);
+
+      // console.log("스틸컷", still);
       // console.log("영화디테일", data);
       return {
         title: movieTitle,
+        still: stillImg,
         data: data,
       };
     });
 
     const movies = await Promise.all(testdata);
-    console.log("모든영화", movieCdata);
     setMovieCdata(movies);
+    console.log("모든영화", movies);
   };
 
   //
@@ -79,7 +90,7 @@ export default function Carousel() {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 10000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -93,21 +104,13 @@ export default function Carousel() {
         {movieCdata.map((item) => {
           return (
             <SwiperSlide>
-              <div>
-                <div>{item.title}</div>
+              <div className="movieCarouselStill">
+                <img src={item.still} className="movieCarouselStill" />
+                {/* <div>{item.title}</div> */}
               </div>
             </SwiperSlide>
           );
         })}
-        {/* <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-        <SwiperSlide>Slide 10</SwiperSlide> */}
 
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
