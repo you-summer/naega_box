@@ -45,7 +45,7 @@ export default function Carousel() {
     let boxRes = await fetch(boxUrl);
     let boxData = await boxRes.json();
     const boxOfficeRank = boxData.boxOfficeResult.dailyBoxOfficeList;
-    console.log("박스오피스", boxOfficeRank);
+    // console.log("박스오피스", boxOfficeRank);
 
     const testdata = boxOfficeRank.map(async (boxOffice) => {
       let movieTitle = boxOffice.movieNm;
@@ -61,10 +61,6 @@ export default function Carousel() {
         .replace("tn_", "")
         .replace(".jpg", "_01.jpg")
         .replace(".JPG", "_01.jpg");
-      console.log("이미지", stillImg);
-
-      // console.log("스틸컷", still);
-      // console.log("영화디테일", data);
       return {
         title: movieTitle,
         still: stillImg,
@@ -101,13 +97,17 @@ export default function Carousel() {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        {movieCdata.map((item) => {
+        {movieCdata.map((item, index) => {
           return (
             <SwiperSlide>
-              <div className="movieCarouselStill">
-                <img src={item.still} className="movieCarouselStill" />
-                {/* <div>{item.title}</div> */}
+              {/* <div className="movieCarouselStill"> */}
+              <img src={item.still} className="movieCarouselStill" />
+              {/* </div> */}
+              <div className="carousel_movieSubTitle">
+                박스오피스{" "}
+                <span className="carousel_rank">{`${index + 1}`}</span>위
               </div>
+              <div className="carousel_movieTitle">{item.title}</div>
             </SwiperSlide>
           );
         })}
