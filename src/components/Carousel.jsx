@@ -12,8 +12,6 @@ import "./Carousel.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-import eximage from "../assets/NAEGA_BOX_LOGO5.png";
-
 export default function Carousel() {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
