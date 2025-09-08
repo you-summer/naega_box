@@ -21,35 +21,25 @@ body {
   height: 100%;
 } */
 
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #444;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
+.HomeMovieCarousel .swiper-slide img {
+  /* display: block; */
+  width: auto;
   height: 100%;
   object-fit: cover;
 }
 
 .HomeMovieCarousel .swiper {
   width: 100%;
-  height: 300px;
+  height: 350px;
   /* margin: 20px auto; */
-  padding: 0px 50px;
+  padding: 0px 80px;
 }
 .HomeMovieCarousel .append-buttons {
   text-align: center;
   margin-top: 20px;
 }
 
-.append-buttons button {
+.HomeMovieCarousel .append-buttons button {
   display: inline-block;
   cursor: pointer;
   border: 1px solid #007aff;
@@ -76,4 +66,27 @@ body {
 .HomeMovieCarousel .homeMovieCarousel_title {
   padding: 30px 50px;
   font-size: 2rem;
+}
+
+.HomeMovieCarousel .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* background: #444; */
+  background-color: transparent;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.HomeMovieCarousel .swiper-wrapper {
+  gap: 10px;
+}
+
+.HomeMovieCarousel .swiper-button-next,
+.HomeMovieCarousel .swiper-button-prev {
+  color: rgb(255, 0, 0); /* 원하는 색 */
+  width: 40px; /* 크기 조절 가능 */
+  height: 40px;
 }

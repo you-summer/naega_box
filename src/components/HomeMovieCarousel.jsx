@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Virtual, Navigation, Pagination, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import exImg from "../assets/NAEGA_BOX_LOGO.png";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,7 +10,7 @@ import "swiper/css/navigation";
 
 import "./HomeMovieCarousel.css";
 
-const HomeMovieCarousel = ({ text }) => {
+const HomeMovieCarousel = ({ text, data }) => {
   // const [swiperRef, setSwiperRef] = useState(null);
   // const appendNumber = useRef(500);
   // const prependNumber = useRef(1);
@@ -37,7 +38,7 @@ const HomeMovieCarousel = ({ text }) => {
   // };
 
   let ex = [
-    { key: 1, value: "1" },
+    { key: 1, value: "1", src: exImg },
     { key: 2, value: "2" },
     { key: 3, value: "3" },
     { key: 4, value: "4" },
@@ -49,6 +50,9 @@ const HomeMovieCarousel = ({ text }) => {
     { key: 10, value: "10" },
   ];
 
+  const movieData = data;
+  console.log("오류?", movieData);
+
   return (
     <>
       <div className="HomeMovieCarousel">
@@ -56,7 +60,7 @@ const HomeMovieCarousel = ({ text }) => {
         <Swiper
           modules={[Virtual, Navigation, Pagination, EffectFade]}
           // onSwiper={setSwiperRef}
-          spaceBetween={30}
+          spaceBetween={0} // 슬라이드 간격 없앰
           slidesPerView={5} // 한 화면에 5개 보임
           slidesPerGroup={5} // 이동할 때 5개씩 이동
           centeredSlides={false} // 왼쪽 시작 // true 중앙시작
@@ -67,14 +71,25 @@ const HomeMovieCarousel = ({ text }) => {
           virtual
           speed={1000} // 1초
           allowTouchMove={false} // 마우스/터치 드래그 차단
+          // loop={true}
+          breakpoints={{
+            1200: { slidesPerView: 5, spaceBetween: 10 },
+            992: { slidesPerView: 4, spaceBetween: 10 },
+            768: { slidesPerView: 3, spaceBetween: 10 },
+            576: { slidesPerView: 2, spaceBetween: 10 },
+            0: { slidesPerView: 1, spaceBetween: 10 },
+          }}
         >
-          {ex.map((item, index) => {
-            return (
-              <SwiperSlide key={item.key} virtualIndex={index}>
-                {item.value}
-              </SwiperSlide>
-            );
-          })}
+          {movieData &&
+            movieData.map((item, index) => {
+              return (
+                <SwiperSlide key={item.key} virtualIndex={index}>
+                  {/* {index + 1} */}
+                  <img src={item.poster} className="img" />
+                  {/* <div>영화제목~~~~</div> */}
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
 
         {/* <p className="append-buttons">
