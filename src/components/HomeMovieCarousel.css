@@ -23,8 +23,8 @@ body {
 
 .HomeMovieCarousel .swiper-slide img {
   /* display: block; */
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -75,9 +75,12 @@ body {
   background-color: transparent;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: normal;
   align-items: center;
-  width: 20%;
+  /* width: 20%; */
+
+  cursor: pointer;
 }
 
 .HomeMovieCarousel .swiper-wrapper {
@@ -89,4 +92,30 @@ body {
   color: rgb(255, 0, 0); /* 원하는 색 */
   width: 40px; /* 크기 조절 가능 */
   height: 40px;
+}
+
+.HomeMovieCarousel .homeMovieCarousel_content {
+  display: flex;
+}
+
+.HomeMovieCarousel .homeMovieCarousel_wrapper {
+  position: relative;
+}
+.HomeMovieCarousel .index {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: white;
+
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.HomeMovieCarousel .index > span {
+  font-weight: bold;
+}
+
+.HomeMovieCarousel .homeMovieCarousel_content_title {
+  /* margin-top: 5px; */
 }

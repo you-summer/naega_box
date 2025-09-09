@@ -84,9 +84,18 @@ const HomeMovieCarousel = ({ text, data }) => {
             movieData.map((item, index) => {
               return (
                 <SwiperSlide key={item.key} virtualIndex={index}>
-                  {/* {index + 1} */}
-                  <img src={item.poster} className="img" />
-                  {/* <div>영화제목~~~~</div> */}
+                  <div className="homeMovieCarousel_wrapper">
+                    <img src={item.poster} className="movie_img" />
+                    <div className="index">
+                      <span>{index + 1}</span>위
+                    </div>
+                    <div className="homeMovieCarousel_content">
+                      <div className="homeMovieCarousel_content_title">
+                        {item.title}
+                      </div>
+                      <div></div>
+                    </div>
+                  </div>
                 </SwiperSlide>
               );
             })}
