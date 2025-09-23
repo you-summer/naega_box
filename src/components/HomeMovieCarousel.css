@@ -118,4 +118,11 @@ body {
 
 .HomeMovieCarousel .homeMovieCarousel_content_title {
   /* margin-top: 5px; */
+  /* text-decoration: none; */
+}
+
+.HomeMovieCarousel .homeMovieCarousel_contents {
+  text-decoration: none;
+  color: rgb(22, 22, 22);
+  font-size: 1rem;
 }

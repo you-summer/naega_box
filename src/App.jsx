@@ -11,6 +11,7 @@ import KakaoAuthLogout from "./pages/KakaoAuth/KakaoAuthLogout.jsx";
 import { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./api/firebaseAuth.js";
+import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 
 export const UserStateContext = createContext();
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/user/:uid" element={<MyPage />} />
           <Route path="/auth" element={<KakaoAuthCallback />} />
           <Route path="/auth/kakao/logout" element={<KakaoAuthLogout />} />
+          <Route path="/contents/:docid" element={<MovieDetail />} />
         </Routes>
       </UserStateContext.Provider>
     </>

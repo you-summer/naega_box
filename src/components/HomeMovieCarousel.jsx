@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./HomeMovieCarousel.css";
+import { Link } from "react-router-dom";
 
 const HomeMovieCarousel = ({ text, data }) => {
   // const [swiperRef, setSwiperRef] = useState(null);
@@ -70,7 +71,9 @@ const HomeMovieCarousel = ({ text, data }) => {
           navigation={true}
           virtual
           speed={1000} // 1초
-          allowTouchMove={false} // 마우스/터치 드래그 차단
+          allowTouchMove={false} // 드래그 막음
+          preventClicks={true} // 클릭 허용
+          preventClicksPropagation={false} // 클릭 전파 막지 않음
           // loop={true}
           breakpoints={{
             1200: { slidesPerView: 5, spaceBetween: 10 },
@@ -84,18 +87,23 @@ const HomeMovieCarousel = ({ text, data }) => {
             movieData.map((item, index) => {
               return (
                 <SwiperSlide key={item.key} virtualIndex={index}>
-                  <div className="homeMovieCarousel_wrapper">
-                    <img src={item.poster} className="movie_img" />
-                    <div className="index">
-                      <span>{index + 1}</span>위
-                    </div>
-                    <div className="homeMovieCarousel_content">
-                      <div className="homeMovieCarousel_content_title">
-                        {item.title}
+                  <Link
+                    to={`/contents/${item.docid}`}
+                    className="homeMovieCarousel_contents"
+                  >
+                    <div className="homeMovieCarousel_wrapper">
+                      <img src={item.poster} className="movie_img" />
+                      <div className="index">
+                        <span>{index + 1}</span>위
                       </div>
-                      <div></div>
+                      <div className="homeMovieCarousel_content">
+                        <div className="homeMovieCarousel_content_title">
+                          {item.title}
+                        </div>
+                        <div></div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               );
             })}

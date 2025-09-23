@@ -42,11 +42,13 @@ const useBoxOfficeDaily = () => {
         .replace(".JPG", "_01.jpg");
       let poster = await data.Data[0].Result[0].posters;
       let posterFirstImage = await poster.split("|")[0];
+      let docid = await data.Data[0].Result[0].DOCID;
       return {
         title: movieTitle,
         still: stillImg,
         poster: posterFirstImage,
         data: data,
+        docid: docid,
       };
     });
 
