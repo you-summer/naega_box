@@ -1,26 +1,3 @@
-/* #app {
-  height: 100%;
-} */
-/* html,
-body {
-  position: relative;
-  height: 100%;
-} */
-
-/* body {
-  background: #000;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-} */
-
-/* .swiper {
-  width: 100%;
-  height: 100%;
-} */
-
 .HomeMovieCarousel .swiper-slide img {
   /* display: block; */
   width: 100%;
@@ -50,18 +27,6 @@ body {
   margin: 0 10px;
   font-size: 13px;
 }
-
-/* .slick-prev,
-.slick-next {
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.5);
-  width: 40px;
-  height: 40px;
-} */
-
-/* .HomeMovieCarousel {
-  padding: 0px 50px;
-} */
 
 .HomeMovieCarousel .homeMovieCarousel_title {
   padding: 30px 50px;
@@ -114,11 +79,6 @@ body {
 
 .HomeMovieCarousel .index > span {
   font-weight: bold;
-}
-
-.HomeMovieCarousel .homeMovieCarousel_content_title {
-  /* margin-top: 5px; */
-  /* text-decoration: none; */
 }
 
 .HomeMovieCarousel .homeMovieCarousel_contents {

@@ -1,0 +1,41 @@
+.MovieDetailHeaderDiv {
+  height: 550px;
+  width: 100%;
+}
+
+.MovieDetailHeaderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.MovieDetailTitle {
+  position: absolute;
+  bottom: 43%;
+  left: 5%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.MovieDetailEngTitle,
+.MovieDetailContent,
+.MovieDetailgenre {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  left: 5%;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.MovieDetailEngTitle {
+  bottom: 37%;
+}
+.MovieDetailContent {
+  bottom: 33%;
+}
+.MovieDetailgenre {
+  bottom: 29%;
+}
