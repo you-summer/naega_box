@@ -1,0 +1,38 @@
+.MovieDetailContent {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  padding: 2% 5%;
+  gap: 3%;
+}
+
+.moviePoster {
+  /* width: 25%; */
+  height: 400px;
+  /* margin: 10px; */
+  /* border: 1px solid purple; */
+  display: flex;
+}
+
+.moviePosterImg {
+  height: 100%;
+  width: auto;
+}
+
+.movieContent {
+  /* width: 75%; */
+  flex: 1;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.movieContentTitle {
+}
+
+.movieContent > p {
+  white-space: pre-wrap;
+  font-size: 0.8rem;
+  line-height: 1.8rem;
+}

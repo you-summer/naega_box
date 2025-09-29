@@ -21,7 +21,7 @@
 }
 
 .MovieDetailEngTitle,
-.MovieDetailContent,
+.MovieDetailTopContent,
 .MovieDetailgenre {
   position: absolute;
   color: rgb(255, 255, 255);
@@ -33,7 +33,7 @@
 .MovieDetailEngTitle {
   bottom: 37%;
 }
-.MovieDetailContent {
+.MovieDetailTopContent {
   bottom: 33%;
 }
 .MovieDetailgenre {
