@@ -9,7 +9,7 @@ const MovieComment = () => {
     <div className="MovieComment">
       <h3>무비코멘트</h3>
       <div className="MovieComment_input">
-        <div className="movieComment_star"></div>
+        <div className="movieComment_star">별별별별별</div>
         <textarea name="" id=""></textarea>
         <button>등록</button>
       </div>
