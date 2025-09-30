@@ -7,32 +7,78 @@
 }
 
 .moviePoster {
-  /* width: 25%; */
-  height: 400px;
-  /* margin: 10px; */
-  /* border: 1px solid purple; */
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .moviePosterImg {
   height: 100%;
   width: auto;
+  transform: scale(1);
+  transition: 0.5s;
+}
+.moviePosterImg:hover {
+  transform: scale(1.05);
+  transition: 0.5s;
 }
 
 .movieContent {
-  /* width: 75%; */
   flex: 1;
-  /* border: 1px solid pink; */
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.movieContentTitle {
-}
-
 .movieContent > p {
   white-space: pre-wrap;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.8rem;
+}
+
+.MovieDetailContent .zzim {
+  width: 25px;
+  cursor: pointer;
+}
+
+.MovieDetailContent .movieContent_zzim {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.moviePosterDiv {
+  height: 400px;
+  overflow: hidden;
+}
+
+.movieZzimDiv {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 아이콘과 텍스트 사이 여백 */
+  position: relative;
+}
+
+.tool-tip {
+  position: absolute;
+  top: 50%;
+  left: 110%; /* 아이콘 오른쪽으로 이동 */
+  transform: translateY(-50%); /* 세로 가운데 정렬 */
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* zzim 이미지에 마우스를 올렸을 때만 tool-tip 보이기 */
+.zzim:hover + .tool-tip {
+  opacity: 1;
+  visibility: visible;
 }

@@ -8,7 +8,7 @@ const MovieDetailTop = () => {
   console.log(data);
 
   return (
-    <div>
+    <div className="MovieDetailTop">
       <div className="MovieDetailHeaderDiv">
         <img src={data.stillImg} className="MovieDetailHeaderImg" />
         <div className="MovieDetailTitle">{data.title}</div>

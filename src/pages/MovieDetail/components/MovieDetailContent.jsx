@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MovieDatailStateContext } from "../MovieDetail";
 import "./MovieDetailContent.css";
+import heart_line from "../../../assets/heart_line.png";
 
 const MovieDetailContent = () => {
   const data = useContext(MovieDatailStateContext);
@@ -25,7 +26,13 @@ const MovieDetailContent = () => {
   return (
     <div className="MovieDetailContent">
       <div className="moviePoster">
-        <img src={`${data.posterImg}`} className="moviePosterImg" />
+        <div className="moviePosterDiv">
+          <img src={`${data.posterImg}`} className="moviePosterImg" />
+        </div>
+        <div className="movieZzimDiv">
+          <img src={heart_line} className="zzim" />
+          <span className="tool-tip">이 영화 찜하기!</span>
+        </div>
       </div>
       <div className="movieContent">
         <h3 className="movieContentTitle">줄거리</h3>
