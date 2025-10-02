@@ -1,3 +1,7 @@
 .MovieComment {
   padding: 0% 5%;
 }
+
+.MovieComment_input {
+  display: flex;
+}

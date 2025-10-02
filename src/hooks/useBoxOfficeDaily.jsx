@@ -33,22 +33,24 @@ const useBoxOfficeDaily = () => {
       let kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&title=${apiMovieTitle}&releaseDts=${relDate}&ServiceKey=${KMDB_API_KEY}`;
       let kmdbRes = await fetch(kmdbUrl);
       let data = await kmdbRes.json();
-      let still = await data.Data[0].Result[0].stlls;
+      let movieData = await data.Data[0].Result[0];
+      let still = await movieData.stlls;
       let stillFirstImage = await still.split("|")[0];
       let stillImg = stillFirstImage
         .replace("thm/01", "still")
         .replace("tn_", "")
         .replace(".jpg", "_01.jpg")
         .replace(".JPG", "_01.jpg");
-      let poster = await data.Data[0].Result[0].posters;
+      let poster = await movieData.posters;
       let posterFirstImage = await poster.split("|")[0];
-      let docid = await data.Data[0].Result[0].DOCID;
+      let DOCID = await movieData.DOCID;
       return {
+        ...movieData,
         title: movieTitle,
         still: stillImg,
-        poster: posterFirstImage,
+        posters: posterFirstImage,
         data: data,
-        docid: docid,
+        DOCID: DOCID,
       };
     });
 
