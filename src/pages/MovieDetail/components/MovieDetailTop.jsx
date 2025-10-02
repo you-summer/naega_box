@@ -2,6 +2,7 @@ import { MovieDatailStateContext } from "../MovieDetail";
 import "./MovieDetailTop.css";
 // import useMovieDetail from "../../../hooks/useMovieDetail";
 import { useContext } from "react";
+import noImage from "../../../assets/noImage.png";
 
 const MovieDetailTop = () => {
   const data = useContext(MovieDatailStateContext);
@@ -10,7 +11,7 @@ const MovieDetailTop = () => {
   return (
     <div className="MovieDetailTop">
       <div className="MovieDetailHeaderDiv">
-        <img src={data.stillImg} className="MovieDetailHeaderImg" />
+        <img src={data.stillImg || noImage} className="MovieDetailHeaderImg" />
         <div className="MovieDetailTitle">{data.title}</div>
         <div className="MovieDetailEngTitle">{data.titleEng}</div>
         <div className="MovieDetailTopContent">

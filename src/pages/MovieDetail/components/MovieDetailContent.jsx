@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { MovieDatailStateContext } from "../MovieDetail";
 import "./MovieDetailContent.css";
 import heart_line from "../../../assets/heart_line.png";
+import noImage from "../../../assets/noImage.png";
 
 const MovieDetailContent = () => {
   const data = useContext(MovieDatailStateContext);
@@ -27,7 +28,7 @@ const MovieDetailContent = () => {
     <div className="MovieDetailContent">
       <div className="moviePoster">
         <div className="moviePosterDiv">
-          <img src={`${data.posterImg}`} className="moviePosterImg" />
+          <img src={data.posterImg || noImage} className="moviePosterImg" />
         </div>
         <div className="movieZzimDiv">
           <img src={heart_line} className="zzim" />
