@@ -48,7 +48,7 @@ const Home = () => {
   const { tomorrow, oneMonthLater } = comingDate();
 
   const getMovieComingSoon = async () => {
-    const kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&releaseDts=${tomorrow}&releaseDte=${oneMonthLater}&listCount=500&ServiceKey=${KMDB_API_KEY}`;
+    const kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&ratedYn=Y&releaseDts=${tomorrow}&releaseDte=${oneMonthLater}&listCount=500&ServiceKey=${KMDB_API_KEY}`;
     let kmdbRes = await fetch(kmdbUrl);
     let data = await kmdbRes.json();
     let arrayData = data.Data[0].Result;
