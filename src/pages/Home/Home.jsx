@@ -52,8 +52,13 @@ const Home = () => {
     let kmdbRes = await fetch(kmdbUrl);
     let data = await kmdbRes.json();
     let arrayData = data.Data[0].Result;
-    console.log("개봉예정", arrayData);
-    setMovieComing(arrayData);
+
+    const getSortedData = arrayData.toSorted((a, b) => {
+      return Number(a.repRlsDate) - Number(b.repRlsDate);
+    });
+
+    console.log("개봉예정", getSortedData);
+    setMovieComing(getSortedData);
   };
 
   useEffect(() => {
