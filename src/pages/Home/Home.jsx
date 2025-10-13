@@ -3,6 +3,7 @@ import Carousel from "../../components/Carousel";
 import Header from "../../components/Header";
 import HomeMovieCarousel from "../../components/HomeMovieCarousel";
 import useBoxOfficeDaily from "../../hooks/useBoxOfficeDaily";
+import { getTomorrowAndOneMonthLater } from "../../util/get-date.js";
 
 const Home = () => {
   // 박스오피스 데이터
@@ -12,40 +13,7 @@ const Home = () => {
 
   const [movieComing, setMovieComing] = useState([]);
 
-  // 오늘날짜 +1
-  const comingDate = () => {
-    const today = new Date();
-
-    // 내일날짜
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-
-    // 내일+1달뒤
-    const oneMonthLater = new Date(tomorrow);
-    oneMonthLater.setMonth(tomorrow.getMonth() + 1);
-
-    // 날짜 포맷
-    const formatDate = (date) => {
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-      if (month < 10) {
-        month = `0${month}`;
-      }
-      if (day < 10) {
-        day = `0${day}`;
-      }
-
-      return `${year}${month}${day}`;
-    };
-
-    return {
-      tomorrow: formatDate(tomorrow),
-      oneMonthLater: formatDate(oneMonthLater),
-    };
-  };
-
-  const { tomorrow, oneMonthLater } = comingDate();
+  const { tomorrow, oneMonthLater } = getTomorrowAndOneMonthLater();
 
   const getMovieComingSoon = async () => {
     const kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&ratedYn=Y&releaseDts=${tomorrow}&releaseDte=${oneMonthLater}&listCount=500&ServiceKey=${KMDB_API_KEY}`;

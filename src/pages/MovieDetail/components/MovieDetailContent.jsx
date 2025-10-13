@@ -3,10 +3,16 @@ import { MovieDatailStateContext } from "../MovieDetail";
 import "./MovieDetailContent.css";
 import heart_line from "../../../assets/heart_line.png";
 import noImage from "../../../assets/noImage.png";
+import MovieStaff from "./MovieStaff";
 
 const MovieDetailContent = () => {
   const data = useContext(MovieDatailStateContext);
   //   const plot = () => {};
+
+  const actors = data?.staffs?.staff?.filter((item) => {
+    return item.staffRoleGroup === "출연";
+  });
+
   if (
     !data ||
     !data.plots ||
@@ -26,18 +32,27 @@ const MovieDetailContent = () => {
 
   return (
     <div className="MovieDetailContent">
-      <div className="moviePoster">
-        <div className="moviePosterDiv">
-          <img src={data.posterImg || noImage} className="moviePosterImg" />
+      <div className="movieDetailTop">
+        <div className="moviePoster">
+          <div className="moviePosterDiv">
+            <img src={data.posterImg || noImage} className="moviePosterImg" />
+          </div>
+          <div className="movieZzimDiv">
+            <img src={heart_line} className="zzim" />
+            <span className="tool-tip">이 영화 찜하기!</span>
+          </div>
         </div>
-        <div className="movieZzimDiv">
-          <img src={heart_line} className="zzim" />
-          <span className="tool-tip">이 영화 찜하기!</span>
+        <div className="movieContent">
+          <div>{/* <h3 className="movieContentTitle">키워드</h3> */}</div>
+          <div>
+            <h3 className="movieContentTitle">줄거리</h3>
+            <p>{plotsFormatted}</p>
+          </div>
         </div>
       </div>
-      <div className="movieContent">
-        <h3 className="movieContentTitle">줄거리</h3>
-        <p>{plotsFormatted}</p>
+
+      <div>
+        <MovieStaff actors={actors} />
       </div>
     </div>
   );

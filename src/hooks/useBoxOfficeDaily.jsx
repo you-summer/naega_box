@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
+import { getYesterday } from "../util/get-date.js";
 
 const useBoxOfficeDaily = () => {
   const KOBIS_API_KEY = import.meta.env.VITE_KOBIS_API_KEY;
   const KMDB_API_KEY = import.meta.env.VITE_KMDB_API_KEY;
 
-  let boxOfficeDate = () => {
-    let year = new Date().getFullYear();
-    let month = new Date().getMonth() + 1;
-    let date = new Date().getDate() - 1;
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    if (date < 10) {
-      date = `0${date}`;
-    }
-    return `${year}${month}${date}`;
-  };
-
   const getBoxOfficeAndDetail = async () => {
     // 박스오피스 1~10위 데이터
-    let targetDt = boxOfficeDate();
+    let targetDt = getYesterday();
     let boxUrl = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOBIS_API_KEY}&targetDt=${targetDt}`;
     let boxRes = await fetch(boxUrl);
     let boxData = await boxRes.json();
