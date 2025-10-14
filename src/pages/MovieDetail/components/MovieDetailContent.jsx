@@ -28,7 +28,8 @@ const MovieDetailContent = () => {
     .replace("  ", "\n")
     .replace(/ “/g, "\n“")
     .replace(/”/g, "”\n")
-    .replace(/!/g, "!\n");
+    .replace(/!/g, "!\n")
+    .replace(/…/g, "…\n");
 
   return (
     <div className="MovieDetailContent">

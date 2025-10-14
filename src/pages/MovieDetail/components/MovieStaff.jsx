@@ -5,14 +5,18 @@ const MovieStaff = ({ actors }) => {
   return (
     <div className="MovieStaff">
       <h3>출연 / 제작</h3>
-      {actors.map((item) => {
-        return (
-          <div className="movieStaffName">
-            <div>{item.staffNm}</div>
-            <div>{item.staffRole}</div>
-          </div>
-        );
-      })}
+      <div className="movieStaffNameWrap">
+        {actors.map((item) => {
+          return (
+            <div className="movieStaffName">
+              <div className="movieName">{item.staffNm}</div>
+              <div className="movieRole">
+                {item.staffRole ? `${item.staffRole} 역` : ""}
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
