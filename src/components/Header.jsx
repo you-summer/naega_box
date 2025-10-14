@@ -13,12 +13,12 @@ const navBar = [
 const Header = ({ type }) => {
   const [isSticky, setIsSticky] = useState(false);
   const currentUser = useContext(UserStateContext);
-  console.log("헤더", currentUser);
+  // console.log("헤더", currentUser);
 
-  console.log(
-    "고유값",
-    currentUser?.user ? currentUser.user.uid : "로그인 안됨"
-  );
+  // console.log(
+  //   "고유값",
+  //   currentUser?.user ? currentUser.user.uid : "로그인 안됨"
+  // );
 
   useEffect(() => {
     const handleScroll = () => {
