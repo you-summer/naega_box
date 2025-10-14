@@ -40,7 +40,7 @@ const ZzimList = () => {
   }, [user]);
   console.log("찜리스트", isMvFavList);
 
-  const data = useMovieDetail({ isMvFavList });
+  //   const data = useMovieDetail({ isMvFavList });
   //   if (!data) {
   //     return <div>로딩중!!</div>;
   //   }
