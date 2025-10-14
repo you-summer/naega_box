@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MovieDatailStateContext } from "../MovieDetail";
 import "./MovieDetailContent.css";
-import heart_line from "../../../assets/heart_line.png";
 import noImage from "../../../assets/noImage.png";
 import MovieStaff from "./MovieStaff";
+import MovieDetailZzim from "./MovieDetailZzim";
 
 const MovieDetailContent = () => {
   const data = useContext(MovieDatailStateContext);
@@ -12,6 +12,7 @@ const MovieDetailContent = () => {
   const actors = data?.staffs?.staff?.filter((item) => {
     return item.staffRoleGroup === "출연";
   });
+  const DOCID = data?.DOCID;
 
   if (
     !data ||
@@ -38,13 +39,9 @@ const MovieDetailContent = () => {
           <div className="moviePosterDiv">
             <img src={data.posterImg || noImage} className="moviePosterImg" />
           </div>
-          <div className="movieZzimDiv">
-            <img src={heart_line} className="zzim" />
-            <span className="tool-tip">이 영화 찜하기!</span>
-          </div>
+          <MovieDetailZzim DOCID={DOCID} />
         </div>
         <div className="movieContent">
-          <div>{/* <h3 className="movieContentTitle">키워드</h3> */}</div>
           <div>
             <h3 className="movieContentTitle">줄거리</h3>
             <p>{plotsFormatted}</p>
