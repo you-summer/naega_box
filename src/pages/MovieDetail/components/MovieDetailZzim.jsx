@@ -21,7 +21,6 @@ const MovieDetailZzim = ({ DOCID }) => {
   const [isZzim, setZzim] = useState(false);
   // console.log(DOCID, "영화고유값");
 
-  const userRef = doc(db, "user", user.uid);
   useEffect(() => {
     // firebase db에서 유저의 favoriteMovies[] 가져오기
     const getFavoriteMovies = async () => {
@@ -29,7 +28,7 @@ const MovieDetailZzim = ({ DOCID }) => {
       if (!user) {
         return;
       }
-
+      const userRef = doc(db, "user", user.uid);
       const userDB = await getDoc(userRef);
       console.log("ref", userDB);
       if (userDB.exists()) {
@@ -51,7 +50,7 @@ const MovieDetailZzim = ({ DOCID }) => {
       // 미로그인시 alert띄움
       return showConfirmAlert({ text: "로그인 후 이용 가능합니다!" });
     }
-
+    const userRef = doc(db, "user", user.uid);
     if (isZzim) {
       updateDoc(userRef, {
         favoriteMovies: arrayRemove(DOCID),
