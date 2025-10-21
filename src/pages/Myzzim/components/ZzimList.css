@@ -5,3 +5,7 @@
 .ZzimList > div {
   padding-top: 40px;
 }
+
+.zzimListDiv {
+  display: flex;
+}

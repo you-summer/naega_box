@@ -5,6 +5,7 @@ import { UserStateContext } from "../../../App";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../api/firebase";
 import useMovieDetail from "../../../hooks/useMovieDetail";
+import { Link } from "react-router-dom";
 
 const ZzimList = () => {
   const currentUser = useContext(UserStateContext);
@@ -48,9 +49,15 @@ const ZzimList = () => {
   return (
     <div className="ZzimList">
       <h2>내가 찜한 리스트</h2>
-      <div>
+      <div className="zzimListDiv">
         {isMvFavList.map((item) => {
-          return <ZzimMovie data={""} />;
+          return (
+            <div>
+              <Link to={`/contents/${item}`}>
+                <ZzimMovie data={item} />
+              </Link>
+            </div>
+          );
         })}
       </div>
     </div>
