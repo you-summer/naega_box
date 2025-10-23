@@ -1,0 +1,17 @@
+.ZzimMovie {
+  display: flex;
+  flex-direction: column;
+}
+
+.zzimMovie_poster {
+  /* width: 20%; */
+}
+
+.zzimMovie_posterImg {
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+}
+
+.zzimMovie_title {
+}

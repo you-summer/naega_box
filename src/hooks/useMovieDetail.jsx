@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const useMovieDetail = () => {
+const useMovieDetail = (movieNumber) => {
   const params = useParams();
-  const movieId = params.docid.slice(0, 1); // docid 첫글자
-  const movieSeq = params.docid.slice(1); // docid 첫글자 이후 ~ 끝글자
+  const fullMovieId = movieNumber || params.docid;
+
+  const movieId = fullMovieId?.slice(0, 1);
+  const movieSeq = fullMovieId?.slice(1);
+  // const movieId = params.docid.slice(0, 1); // docid 첫글자
+  // const movieSeq = params.docid.slice(1); // docid 첫글자 이후 ~ 끝글자
 
   const KMDB_API_KEY = import.meta.env.VITE_KMDB_API_KEY;
 

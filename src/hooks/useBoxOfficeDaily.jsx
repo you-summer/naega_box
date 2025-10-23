@@ -22,16 +22,16 @@ const useBoxOfficeDaily = () => {
       let kmdbRes = await fetch(kmdbUrl);
       let data = await kmdbRes.json();
       let movieData = await data.Data[0].Result[0];
-      let still = await movieData.stlls;
-      let stillFirstImage = await still.split("|")[0];
+      let still = movieData.stlls;
+      let stillFirstImage = still.split("|")[0];
       let stillImg = stillFirstImage
         .replace("thm/01", "still")
         .replace("tn_", "")
         .replace(".jpg", "_01.jpg")
         .replace(".JPG", "_01.jpg");
-      let poster = await movieData.posters;
-      let posterFirstImage = await poster.split("|")[0];
-      let DOCID = await movieData.DOCID;
+      let poster = movieData.posters;
+      let posterFirstImage = poster.split("|")[0];
+      let DOCID = movieData.DOCID;
       return {
         ...movieData,
         title: movieTitle,

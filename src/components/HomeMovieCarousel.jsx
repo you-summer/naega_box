@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const HomeMovieCarousel = ({ text, data }) => {
   const movieData = data;
-  console.log("오류?", movieData);
+  // console.log("오류?", movieData);
 
   const formatDate = (date) => {
     if (!date) return "";

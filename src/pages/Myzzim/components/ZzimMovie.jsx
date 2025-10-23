@@ -1,10 +1,19 @@
+import { useEffect, useState } from "react";
 import "./ZzimMovie.css";
+import useMovieDetail from "../../../hooks/useMovieDetail";
 
-const ZzimMovie = () => {
+const ZzimMovie = ({ data }) => {
+  console.log("item확인", data);
+
+  const { data: movieDetail } = useMovieDetail(data);
+
+  console.log(movieDetail);
   return (
     <div className="ZzimMovie">
-      <div className="zzimMovie_poster">poster</div>
-      <div className="zzimMovie_title">title</div>
+      <div className="zzimMovie_poster">
+        <img src={movieDetail.posterImg} className="zzimMovie_posterImg" />
+      </div>
+      <div className="zzimMovie_title">{movieDetail.title}</div>
     </div>
   );
 };

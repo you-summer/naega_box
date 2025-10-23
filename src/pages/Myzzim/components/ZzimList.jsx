@@ -13,8 +13,6 @@ const ZzimList = () => {
 
   const [isMvFavList, setMvFavList] = useState([]);
 
-  const userRef = doc(db, "user", user.uid);
-
   useEffect(() => {
     // firebase db에서 유저의 favoriteMovies[] 가져오기
     const getFavoriteMovies = async () => {
@@ -22,6 +20,7 @@ const ZzimList = () => {
       if (!user) {
         return;
       }
+      const userRef = doc(db, "user", user.uid);
 
       const userDB = await getDoc(userRef);
       console.log("ref", userDB);
@@ -53,7 +52,7 @@ const ZzimList = () => {
         {isMvFavList.map((item) => {
           return (
             <div>
-              <Link to={`/contents/${item}`}>
+              <Link to={`/contents/${item}`} className="zzimList_linkA">
                 <ZzimMovie data={item} />
               </Link>
             </div>

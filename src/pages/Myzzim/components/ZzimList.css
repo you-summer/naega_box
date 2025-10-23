@@ -8,4 +8,12 @@
 
 .zzimListDiv {
   display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.zzimList_linkA {
+  text-decoration: none;
+  color: rgb(22, 22, 22);
+  font-size: 1rem;
 }
