@@ -60,6 +60,12 @@ const MovieComment = () => {
       alert("내용을 입력해주세요 !");
       return;
     }
+
+    onSubmitInput(input);
+  };
+
+  const onSubmitInput = () => {
+    // 여기서부터 시작!!!!
   };
 
   return (
