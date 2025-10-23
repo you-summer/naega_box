@@ -1,0 +1,35 @@
+.MovieCommentList {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_userImg {
+  width: 35px;
+  border-radius: 30px;
+  /* height: 30px; */
+}
+
+.comment_userInfo {
+  display: flex;
+  align-items: center;
+}
+.comment_name {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.comment_content_wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  gap: 20px;
+}
+
+.comment_name_star {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_liked {
+  display: flex;
+}
