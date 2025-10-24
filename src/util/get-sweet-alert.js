@@ -17,12 +17,12 @@ export const showLoadingAlert = ({ title, text }) => {
 };
 
 // 성공 알림
-export const showSuccessAlert = async ({ title, text }) => {
+export const showSuccessAlert = async ({ title, text, confirmButtonText }) => {
   return Swal.fire({
     title: title,
     text: text,
     icon: "success",
-    confirmButtonText: "메인으로",
+    confirmButtonText: confirmButtonText,
     confirmButtonColor: "rgb(100, 201, 100)",
     showClass: { popup: "" }, // 애니메이션 제거
     hideClass: { popup: "" },

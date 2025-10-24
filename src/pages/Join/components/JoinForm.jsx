@@ -45,6 +45,7 @@ const JoinForm = () => {
       const sweetalertResult = await showSuccessAlert({
         title: "가입을 축하합니다!",
         text: `${user.displayName}님의 회원가입을 축하합니다, 이메일 인증 후 로그인 해주세요`,
+        confirmButtonText: "메인으로",
       });
       if (sweetalertResult.isConfirmed) {
         await logout(auth);

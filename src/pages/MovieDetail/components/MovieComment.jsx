@@ -4,20 +4,21 @@ import "./MovieComment.css";
 import grayStar from "../../../assets/grayStar.png";
 import yellowStar from "../../../assets/yellowStar.png";
 import MovieCommentList from "./MovieCommentList";
-import { db } from "../../../api/firebase";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  deleteDoc,
-  updateDoc,
-  getDocs,
-  collection,
-  query,
-  where,
-} from "firebase/firestore";
+// import { db } from "../../../api/firebase";
+// import {
+//   doc,
+//   setDoc,
+//   getDoc,
+//   deleteDoc,
+//   updateDoc,
+//   getDocs,
+//   collection,
+//   query,
+//   where,
+// } from "firebase/firestore";
 import { UserStateContext } from "../../../App";
 import { useParams } from "react-router-dom";
+import { getCommentList, addComment } from "../../../api/firebaseDB";
 
 const MovieComment = () => {
   // const data = useContext(MovieDatailStateContext);
@@ -40,33 +41,34 @@ const MovieComment = () => {
 
   // 코멘트리스트 넘기기
   const [commentList, setCommentList] = useState();
-  const getCommentList = async (docid) => {
-    const q = query(collection(db, "ratings"), where("movieId", "==", docid));
+  // const getCommentList = async (docid) => {
+  //   const q = query(collection(db, "ratings"), where("movieId", "==", docid));
 
-    const comment = await getDocs(q);
+  //   const comment = await getDocs(q);
 
-    // console.log("코멘트리스트뜨나?", comment.docs[0].data());
-    const commentList = comment.docs
-      .map((item) => {
-        return {
-          ...item.data(),
-        };
-      })
-      //최신순으로 정렬
-      .toSorted((a, b) => {
-        return b.createdAt.toDate() - a.createdAt.toDate();
-      });
-    setCommentList(commentList);
-    return commentList;
-  };
+  //   // console.log("코멘트리스트뜨나?", comment.docs[0].data());
+  //   const commentList = comment.docs
+  //     .map((item) => {
+  //       return {
+  //         ...item.data(),
+  //       };
+  //     })
+  //     //최신순으로 정렬
+  //     .toSorted((a, b) => {
+  //       return b.createdAt.toDate() - a.createdAt.toDate();
+  //     });
+  //   setCommentList(commentList);
+  //   return commentList;
+  // };
 
   useEffect(() => {
-    getCommentList(docid);
+    const commentList = async () => {
+      const comment = await getCommentList(docid);
+      setCommentList(comment);
+    };
+    commentList();
   }, [docid]);
 
-  // if (!userState || !userState.user) {
-  //   return <div>로딩중</div>;
-  // }
   const user = userState.user;
   // console.log("유저유저!", user);
 
@@ -84,8 +86,6 @@ const MovieComment = () => {
     });
   };
 
-  // const [content, setContent] = useState("");
-  // textarea에 입력된거 저장하는 useState
   const onchangeInput = (e) => {
     console.log(e.target.value);
     let name = e.target.name;
@@ -97,7 +97,7 @@ const MovieComment = () => {
     });
   };
 
-  const onsubmit = (input) => {
+  const onsubmit = async (input) => {
     if (input.score === 0) {
       confirm("별점을 등록해주세요!");
       return;
@@ -107,32 +107,43 @@ const MovieComment = () => {
       alert("내용을 입력해주세요 !");
       return;
     }
+    const result = await addComment(docid, user, input);
+    if (result) {
+      setInput({ content: "", score: 0 });
+      setScore([false, false, false, false, false]);
+      const updateCommentList = await getCommentList(docid);
+      setCommentList(updateCommentList);
+    }
+  };
 
-    onSubmitInput(input);
+  // 코멘트 삭제 후 다시 리렌더링 하는 함수
+  const refreshComments = async () => {
+    const upadateList = await getCommentList(docid);
+    setCommentList(upadateList);
   };
 
   // Firebase DB 'ratings'에 저장
-  const onSubmitInput = async (input) => {
-    // firsebase DB에 동일회원의 코멘트가 이미 있는지 확인
-    const userDoc = await getDoc(doc(db, "ratings", `${docid}_${user.uid}`));
-    if (!userDoc.exists()) {
-      await setDoc(doc(db, "ratings", `${docid}_${user.uid}`), {
-        comment: input.content,
-        createdAt: new Date(),
-        movieId: docid,
-        score: input.score,
-        uid: user.uid,
-        displayName: user.displayName,
-        userImg: user.photoURL,
-      });
-      alert("관람평이 등록되었습니다!");
-      setInput({ content: "", score: 0 });
-      setScore([false, false, false, false, false]);
-      getCommentList(docid);
-    } else {
-      alert("해당 영화에 이미 코멘트를 작성하셨습니다!");
-    }
-  };
+  // const onSubmitInput = async (input) => {
+  //   // firsebase DB에 동일회원의 코멘트가 이미 있는지 확인
+  //   const userDoc = await getDoc(doc(db, "ratings", `${docid}_${user.uid}`));
+  //   if (!userDoc.exists()) {
+  //     await setDoc(doc(db, "ratings", `${docid}_${user.uid}`), {
+  //       comment: input.content,
+  //       createdAt: new Date(),
+  //       movieId: docid,
+  //       score: input.score,
+  //       uid: user.uid,
+  //       displayName: user.displayName,
+  //       userImg: user.photoURL,
+  //     });
+  //     alert("관람평이 등록되었습니다!");
+  //     setInput({ content: "", score: 0 });
+  //     setScore([false, false, false, false, false]);
+  //     getCommentList(docid);
+  //   } else {
+  //     alert("해당 영화에 이미 코멘트를 작성하셨습니다!");
+  //   }
+  // };
 
   return (
     <div className="MovieComment">
@@ -197,7 +208,9 @@ const MovieComment = () => {
       </div>
       <hr className="movieComment_hr" />
       {commentList?.map((item) => {
-        return <MovieCommentList comment={item} />;
+        return (
+          <MovieCommentList comment={item} refreshComments={refreshComments} />
+        );
       })}
     </div>
   );

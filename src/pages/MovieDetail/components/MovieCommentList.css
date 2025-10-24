@@ -24,9 +24,10 @@
   gap: 20px;
 }
 
-.comment_name_star {
+.comment_name_date {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .comment_liked {
@@ -38,7 +39,24 @@
 }
 
 .comment_date {
-  display: flex;
-  justify-content: flex-end;
+  /* display: flex;
+  justify-content: flex-end; */
   font-size: 0.8rem;
+}
+
+.comment_up_del {
+  display: flex;
+}
+
+.comment_up_del > button {
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background-color: white;
+  color: rgb(101, 101, 101);
+}
+.comment_up_del_div {
+  border: none;
+  font-size: 0.8rem;
+  color: rgb(101, 101, 101);
 }

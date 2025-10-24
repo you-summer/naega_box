@@ -45,6 +45,7 @@ const LoginForm = () => {
       const sweetalertResult = await showSuccessAlert({
         title: "성공적으로 로그인되었습니다 !",
         text: `${user.displayName}님 반갑습니다!`,
+        confirmButtonText: "메인으로",
       });
       if (sweetalertResult.isConfirmed) {
         nav("/", { replace: true });
@@ -87,6 +88,7 @@ const LoginForm = () => {
       const sweetalertResult = await showSuccessAlert({
         title: "발송 완료",
         text: `${email}로 비밀번호 재설정 메일을 보냈습니다!`,
+        confirmButtonText: "메인으로",
       });
       if (sweetalertResult.isConfirmed) {
         nav("/", { replace: true });
