@@ -6,22 +6,21 @@
 .comment_userImg {
   width: 35px;
   border-radius: 30px;
-  /* height: 30px; */
 }
 
 .comment_userInfo {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 .comment_name {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
 .comment_content_wrap {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
   gap: 20px;
 }
 
@@ -32,4 +31,14 @@
 
 .comment_liked {
   display: flex;
+}
+
+.comment_img {
+  display: flex;
+}
+
+.comment_date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.8rem;
 }

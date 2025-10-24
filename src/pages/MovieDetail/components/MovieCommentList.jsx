@@ -1,27 +1,40 @@
-import { useContext } from "react";
 import "../components/MovieCommentList.css";
-import { UserStateContext } from "../../../App";
-import userImg from "../../../assets/default_profile_image.jpg";
 import likeButton from "../../../assets/like_button.png";
+import grayStar from "../../../assets/grayStar.png";
+import yellowStar from "../../../assets/yellowStar.png";
 
-const MovieCommentList = () => {
-  //   const user = useContext(UserStateContext);
-  //   console.log("유저유저!", user);
+const MovieCommentList = ({ comment }) => {
+  console.log("잘넘어왔나?", comment);
+
+  // 별을 5개로 표현하기 위한 배열
+  const starArray = [0, 1, 2, 3, 4];
+
+  // comment 안에 있는 createdAt 사용하기
+  const commentDate = comment?.createdAt?.toDate().toLocaleDateString();
+
   return (
     <div className="MovieCommentList">
       <div className="comment_userInfo">
         <div className="comment_img">
-          <img src={userImg} className="comment_userImg" />
+          <img src={comment.userImg} className="comment_userImg" />
         </div>
         <div className="comment_name_star">
-          <div className="comment_name">김아꽁</div>
-          <div className="comment_star_img">별별별별별</div>
+          <div className="comment_name">{comment.displayName}</div>
+          <div className="comment_date">{commentDate}</div>
         </div>
       </div>
       <div className="comment_content_wrap">
-        <div className="comment_content">
-          영화가 너무 재밌어요! 이러이러해서 좋았고 저러저러해서좋았어요 ^^~~~
+        <div className="comment_star_img">
+          {starArray.map((item) => {
+            return (
+              <img
+                src={item < comment.score ? yellowStar : grayStar}
+                className="movieCommentStarImg"
+              />
+            );
+          })}
         </div>
+        <div className="comment_content">{comment.comment}</div>
         <div className="comment_liked">
           <div className="comment_liked_img">
             <img src={likeButton} alt="" />
