@@ -143,7 +143,13 @@ const MovieComment = () => {
           <div className="movieCommentStarText">별점을 선택해주세요.</div>
           <div className="movieCommentStarImgDiv">
             {starArray.map((index) => {
-              return (
+              return !user ? (
+                <img
+                  key={index}
+                  src={score[index] ? yellowStar : grayStar}
+                  className="movieCommentStarImg"
+                />
+              ) : (
                 <img
                   key={index}
                   src={score[index] ? yellowStar : grayStar}
@@ -156,20 +162,37 @@ const MovieComment = () => {
           </div>
         </div>
         <div className="movieComment_comment">
-          <textarea
-            className="movieCommentTextarea"
-            placeholder="영화 어떠셨나요? 관람평을 입력해주세요!"
-            value={input.content}
-            name="content"
-            onChange={onchangeInput}
-            ref={textareaRef}
-          ></textarea>
-          <button
-            className="movieCommentButton"
-            onClick={() => onsubmit(input)}
-          >
-            등록
-          </button>
+          {!user ? (
+            <>
+              <textarea
+                className="movieCommentTextarea"
+                placeholder="로그인 후 관람평을 등록해주세요!"
+                value={input.content}
+                name="content"
+                onChange={onchangeInput}
+                ref={textareaRef}
+                disabled
+              ></textarea>
+              <button className="movieCommentButton">등록</button>
+            </>
+          ) : (
+            <>
+              <textarea
+                className="movieCommentTextarea"
+                placeholder="영화 어떠셨나요? 관람평을 입력해주세요!"
+                value={input.content}
+                name="content"
+                onChange={onchangeInput}
+                ref={textareaRef}
+              ></textarea>
+              <button
+                className="movieCommentButton"
+                onClick={() => onsubmit(input)}
+              >
+                등록
+              </button>
+            </>
+          )}
         </div>
       </div>
       <hr className="movieComment_hr" />
