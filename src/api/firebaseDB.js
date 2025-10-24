@@ -9,6 +9,8 @@ import {
   collection,
   query,
   where,
+  arrayRemove,
+  arrayUnion,
 } from "firebase/firestore";
 
 // commentList 가져오기
@@ -44,6 +46,7 @@ export const addComment = async (docid, user, input) => {
       uid: user.uid,
       displayName: user.displayName,
       userImg: user.photoURL,
+      likes: [], //누가 좋아요 눌렀는지 uid저장하는 배열
     });
     alert("관람평이 등록되었습니다!");
     return true;
@@ -57,4 +60,22 @@ export const commentDelete = async (comment) => {
   console.log("코멘트머에여?", comment);
   await deleteDoc(doc(db, "ratings", `${comment.movieId}_${comment.uid}`));
   return true;
+};
+
+// 코멘트 좋아요
+export const commentLiked = async (comment, uid, isLiked) => {
+  const commentRef = doc(db, "ratings", `${comment.movieId}_${comment.uid}`);
+  // const user = user?.user;
+
+  if (isLiked) {
+    // 이미 좋아요를 눌렀을 경우
+    updateDoc(commentRef, {
+      likes: arrayRemove(uid),
+    });
+  } else {
+    // 좋아요를 누르지 않았을 경우!
+    updateDoc(commentRef, {
+      likes: arrayUnion(uid),
+    });
+  }
 };
