@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import "./Chart.css";
 import { useContext, useEffect, useState } from "react";
 import { UserCommentListStateContext } from "../MyPage";
+import ChartEx from "./ChartEx";
 
 const Chart = () => {
   const { isUserComment } = useContext(UserCommentListStateContext);
 
   const [scoreSum, setScoreSum] = useState(0);
 
-  console.log("chart", isUserComment);
-  console.log("길이", isUserComment.length);
+  // console.log("chart", isUserComment);
+  // console.log("길이", isUserComment.length);
   // console.log("웅", isUserComment[i]?.score);
 
   // 별점 평균
@@ -35,7 +36,9 @@ const Chart = () => {
         <h4>별점</h4>
       </div>
       <div className="chart_chart_wrapper">
-        <div>차트~~~~~</div>
+        <div>
+          <ChartEx />
+        </div>
       </div>
       <hr className="chart_hr" />
       <div className="chart_content_wrapper">
