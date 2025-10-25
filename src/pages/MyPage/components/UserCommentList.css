@@ -1,0 +1,76 @@
+.UserCommentList {
+  /* border: 1px solid purple; */
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(250, 248, 248);
+}
+
+.UserCommentList .userName {
+  font-weight: bold;
+}
+
+.UserCommentList > div {
+  color: rgb(97, 96, 96);
+}
+
+.UserCommentList .date {
+  font-size: 0.8rem;
+}
+
+.UserCommentList_user {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.UserCommentList_movie {
+  display: flex;
+  gap: 10px;
+}
+
+.UserCommentList_movie > div {
+  font-size: 0.8rem;
+}
+
+.UserCommentList .date {
+  flex: 1;
+}
+
+.UserCommentList_hr {
+  border: none; /* 기본 테두리 제거 */
+  height: 0.5px; /* 높이 지정 */
+  background-color: #ededed; /* 색 지정 */
+  margin: 15px 0; /* 위아래 여백*/
+}
+
+.UserCommentList_del {
+  display: flex;
+  justify-content: space-between;
+}
+
+.UserCommentList_del > button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #c0c0c0; /* 색 지정 */
+}
+
+.UserCommentList_likes {
+  font-size: 0.8rem;
+}
+
+.UserCommentList_comment {
+  padding: 10px 0px;
+}
+.UserCommentList .movie_poster {
+  width: 55px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.UserCommentList .userCommentList_link {
+  text-decoration: none;
+  color: rgb(97, 96, 96);
+}

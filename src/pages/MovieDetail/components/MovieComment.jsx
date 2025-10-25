@@ -4,21 +4,9 @@ import "./MovieComment.css";
 import grayStar from "../../../assets/grayStar.png";
 import yellowStar from "../../../assets/yellowStar.png";
 import MovieCommentList from "./MovieCommentList";
-// import { db } from "../../../api/firebase";
-// import {
-//   doc,
-//   setDoc,
-//   getDoc,
-//   deleteDoc,
-//   updateDoc,
-//   getDocs,
-//   collection,
-//   query,
-//   where,
-// } from "firebase/firestore";
 import { UserStateContext } from "../../../App";
 import { useParams } from "react-router-dom";
-import { getCommentList, addComment } from "../../../api/firebaseDB";
+import { getMovieCommentList, addComment } from "../../../api/firebaseDB";
 
 const MovieComment = () => {
   // const data = useContext(MovieDatailStateContext);
@@ -63,7 +51,7 @@ const MovieComment = () => {
 
   useEffect(() => {
     const commentList = async () => {
-      const comment = await getCommentList(docid);
+      const comment = await getMovieCommentList(docid);
       setCommentList(comment);
     };
     commentList();
@@ -111,14 +99,14 @@ const MovieComment = () => {
     if (result) {
       setInput({ content: "", score: 0 });
       setScore([false, false, false, false, false]);
-      const updateCommentList = await getCommentList(docid);
+      const updateCommentList = await getMovieCommentList(docid);
       setCommentList(updateCommentList);
     }
   };
 
   // 코멘트 삭제 후 다시 리렌더링 하는 함수
   const refreshComments = async () => {
-    const upadateList = await getCommentList(docid);
+    const upadateList = await getMovieCommentList(docid);
     setCommentList(upadateList);
   };
 

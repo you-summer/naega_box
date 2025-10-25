@@ -14,8 +14,8 @@ import {
 } from "firebase/firestore";
 
 // commentList 가져오기
-export const getCommentList = async (docid) => {
-  const q = query(collection(db, "ratings"), where("movieId", "==", docid));
+export const getCommentList = async (key, value) => {
+  const q = query(collection(db, "ratings"), where(key, "==", value));
 
   const comment = await getDocs(q);
 
@@ -31,6 +31,16 @@ export const getCommentList = async (docid) => {
     });
 
   return commentList;
+};
+
+// movieCommentList 가져오기
+export const getMovieCommentList = async (docid) => {
+  return getCommentList("movieId", docid);
+};
+
+// myPage CommentList 가져오기
+export const getUserCommentList = async (uid) => {
+  return getCommentList("uid", uid);
 };
 
 //  firebase DB ratings 에 저장

@@ -1,13 +1,52 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./UserInfo.css";
 import { UserStateContext } from "../../../App";
 import default_profile_img from "../../../assets/default_profile_image.jpg";
 import { Link } from "react-router-dom";
+import { db } from "../../../api/firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 const UserInfo = () => {
   const { user, setUSer } = useContext(UserStateContext);
   console.log("UserInfo : ", user);
   let userImg = user?.photoURL;
+  let uid = user?.uid;
+
+  const [userDoc2, setUserDoc] = useState([]);
+  console.log(userDoc2, "userDoc2");
+  const [isUserComment, setUserComment] = useState();
+
+  useEffect(() => {
+    getUserData();
+    getUserComment();
+  }, [user]);
+
+  const getUserData = async () => {
+    const userDoc = await getDoc(doc(db, "user", uid));
+    const dbUserDoc = userDoc.data();
+    await setUserDoc(dbUserDoc);
+  };
+
+  const getUserComment = async () => {
+    //user의 uid와 db의 ratings의 uid를 비교해서 같은것만 가져오면 되는듯??
+    const q = query(collection(db, "ratings"), where("uid", "==", uid));
+    const comment = await getDocs(q);
+    const userComment = await comment.docs.map((item) => {
+      return {
+        ...item.data(),
+      };
+    });
+
+    console.log("내가쓴코멘트??", userComment);
+    await setUserComment(userComment);
+  };
 
   return (
     <div className="UserInfo">
@@ -27,19 +66,21 @@ const UserInfo = () => {
       </div>
       <hr className="userInfo_hr" />
       <div className="userInfo_reviews_wrapper">
-        <Link className="userInfo_reviews">
+        <Link className="userInfo_reviews" to={"/mycommentlist"}>
           <div className="userInfo_reviews1">평가</div>
-          <div className="userInfo_reviews2">201</div>
+          <div className="userInfo_reviews2">{isUserComment?.length || 0}</div>
         </Link>
-        <span className="userInfo_reviews_span">|</span>
+        {/* <span className="userInfo_reviews_span">|</span>
         <Link className="userInfo_reviews">
           <div className="userInfo_reviews1">코멘트</div>
           <div className="userInfo_reviews2">101</div>
-        </Link>
+        </Link> */}
         <span className="userInfo_reviews_span">|</span>
-        <Link className="userInfo_reviews">
+        <Link className="userInfo_reviews" to={"/myzzim"}>
           <div className="userInfo_reviews1">찜한 영화</div>
-          <div className="userInfo_reviews2">23</div>
+          <div className="userInfo_reviews2">
+            {userDoc2?.favoriteMovies?.length || 0}
+          </div>
         </Link>
       </div>
       <hr className="userInfo_hr" />

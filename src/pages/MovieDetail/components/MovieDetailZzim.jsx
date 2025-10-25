@@ -16,7 +16,6 @@ import { db } from "../../../api/firebase";
 const MovieDetailZzim = ({ DOCID }) => {
   const currentUser = useContext(UserStateContext);
   const user = currentUser.user;
-  // console.log(user, "찜");
 
   const [isZzim, setZzim] = useState(false);
   // console.log(DOCID, "영화고유값");
