@@ -36,6 +36,7 @@
 .Chart .chart_chart_wrapper {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .Chart .chart_hr {

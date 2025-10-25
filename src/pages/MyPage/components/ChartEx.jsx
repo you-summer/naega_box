@@ -39,12 +39,22 @@ const ChartEx = () => {
   const { isUserComment } = useContext(UserCommentListStateContext);
   console.log(isUserComment, "여기차트ex");
 
-  // 별점 남긴거 별점수 갯수대로
+  // 별점 남긴거 별점 갯수대로
   const scoreCount = labels.map((label) => {
     return isUserComment.filter((item) => {
       return Number(item.score) === Number(label);
     }).length;
   });
+
+  const options = {
+    scales: {
+      y: {
+        suggestedMin: 0, // 기본 최소값
+        suggestedMax: 5, // 기본 최대값, 필요하면 데이터에 따라 늘어날 수 있음
+        ticks: { stepSize: 1 },
+      },
+    },
+  };
 
   const data = {
     labels,
@@ -68,6 +78,6 @@ const ChartEx = () => {
     ],
   };
 
-  return <Chart type="bar" data={data} />;
+  return <Chart type="bar" data={data} options={options} />;
 };
 export default ChartEx;

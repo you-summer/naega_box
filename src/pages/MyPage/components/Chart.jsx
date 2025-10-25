@@ -36,9 +36,7 @@ const Chart = () => {
         <h4>별점</h4>
       </div>
       <div className="chart_chart_wrapper">
-        <div>
-          <ChartEx />
-        </div>
+        <ChartEx />
       </div>
       <hr className="chart_hr" />
       <div className="chart_content_wrapper">
