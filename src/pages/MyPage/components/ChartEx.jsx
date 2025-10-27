@@ -37,7 +37,7 @@ const labels = ["1", "2", "3", "4", "5"];
 
 const ChartEx = () => {
   const { isUserComment } = useContext(UserCommentListStateContext);
-  console.log(isUserComment, "여기차트ex");
+  //   console.log(isUserComment, "여기차트ex");
 
   // 별점 남긴거 별점 갯수대로
   const scoreCount = labels.map((label) => {

@@ -13,6 +13,11 @@
   padding: 10px 5px;
 }
 
+.LikedComments .likedComments_content > a {
+  text-decoration: none;
+  color: black;
+}
+
 .LikedComments .likedComments_hr {
   border: none; /* 기본 테두리 제거 */
   height: 0.5px; /* 높이 지정 */

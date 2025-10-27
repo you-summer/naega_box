@@ -89,3 +89,27 @@ export const commentLiked = async (comment, uid, isLiked) => {
     });
   }
 };
+
+// 내가 좋아요한 코멘트 목록 가져오기
+export const getLikedCommentList = async (uid) => {
+  const q = query(
+    collection(db, "ratings"),
+    where("likes", "array-contains", uid)
+  );
+
+  const comment = await getDocs(q);
+
+  const commentList = comment.docs
+    .map((item) => {
+      return {
+        ...item.data(),
+      };
+    })
+    //최신순으로 정렬
+    .toSorted((a, b) => {
+      return b.createdAt.toDate() - a.createdAt.toDate();
+    });
+
+  //   console.log("좋아요한 코멘트목록", commentList);
+  return commentList;
+};

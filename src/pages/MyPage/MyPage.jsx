@@ -7,6 +7,7 @@ import UserInfo from "./components/UserInfo";
 import "./MyPage.css";
 import { getUserCommentList } from "../../api/firebaseDB";
 import { UserStateContext } from "../../App";
+// import CommentList from "./components/CommentList";
 
 export const UserCommentListStateContext = createContext();
 

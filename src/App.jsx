@@ -44,7 +44,14 @@ function App() {
           <Route path="/auth" element={<KakaoAuthCallback />} />
           <Route path="/auth/kakao/logout" element={<KakaoAuthLogout />} />
           <Route path="/contents/:docid" element={<MovieDetail />} />
-          <Route path="/mycommentlist" element={<UserCommentList />} />
+          <Route
+            path="/mycommentlist"
+            element={<UserCommentList type="my" />}
+          />
+          <Route
+            path="/likedcommentlist"
+            element={<UserCommentList type="liked" />}
+          />
         </Routes>
       </UserStateContext.Provider>
     </>

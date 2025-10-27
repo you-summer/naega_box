@@ -3,32 +3,56 @@ import "../components/UserComment.css";
 import UserCommentList from "./UserCommentList";
 import { useContext, useEffect, useState } from "react";
 import { UserStateContext } from "../../../App";
-import { getUserCommentList } from "../../../api/firebaseDB";
-import { UserCommentListStateContext } from "../MyPage";
+import {
+  getLikedCommentList,
+  getUserCommentList,
+} from "../../../api/firebaseDB";
+// import { UserCommentListStateContext } from "../MyPage";
 
-const UserComment = () => {
-  // const { isUserComment, refreshComments } = useContext(
-  //   UserCommentListStateContext
-  // );
+const UserComment = ({ type }) => {
+  console.log("타입은?", type);
   const { user } = useContext(UserStateContext);
   console.log("UserInfo : ", user);
   let uid = user?.uid;
 
   const [isUserComment, setUserComment] = useState([]);
+  // const [isLikedComment, setLikedComment] = useState([]);
 
   useEffect(() => {
+    if (!uid) return;
+
     const userComment = async () => {
-      const commentList = await getUserCommentList(uid);
-      setUserComment(commentList);
+      let data;
+      if (type === "liked") {
+        // 클릭한 페이지가 내가 좋아요한 코멘트일 경우
+        data = await getLikedCommentList(uid);
+      } else {
+        // 클릭한 페이지가 내 코멘트 목록일 경우
+        data = await getUserCommentList(uid);
+      }
+      setUserComment(data);
     };
     userComment();
-  }, [user]);
+  }, [user, type]);
 
   // 코멘트 삭제 후 다시 리렌더링 하는 함수
   const refreshComments = async () => {
-    const upadateList = await getUserCommentList(uid);
-    setUserComment(upadateList);
+    let updateList;
+    if (type === "liked") {
+      // 좋아요 누른거 리렌더링 (좋아요 취소했을경우)
+      updateList = await getLikedCommentList(uid);
+    } else {
+      // 코멘트 삭제 후 다시 리렌더링
+      updateList = await getUserCommentList(uid);
+    }
+    setUserComment(updateList);
   };
+
+  // // 좋아요 취소 후 다시 리렌더링 하는 함수
+  // const refreshLikedComments = async () => {
+  //   console.log("좋아요취소?", updateLikedList);
+  //   setLikedComment(updateLikedList);
+  // };
 
   return (
     <div className="UserComment">
@@ -36,7 +60,11 @@ const UserComment = () => {
         <Header type={"MYPAGE"} />
       </div>
       <div className="MyPage_content_wrapper">
-        <h2>내가 남긴 코멘트 확인하기!</h2>
+        <h2>
+          {type === "my"
+            ? "내가 남긴 코멘트 확인하기!"
+            : "내가 좋아요한 코멘트 확인하기!"}
+        </h2>
         {isUserComment.length === 0 ? (
           <div>작성된 코멘트가 없습니다</div>
         ) : (
@@ -46,6 +74,9 @@ const UserComment = () => {
                 <UserCommentList
                   isUserComment={item}
                   refreshComments={refreshComments}
+                  // refreshLikedComments={refreshLikedComments}
+                  type={type}
+                  uid={uid}
                 />
               );
             })}
