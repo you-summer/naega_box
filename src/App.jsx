@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./api/firebaseAuth.js";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import UserCommentList from "./pages/MyPage/components/UserComment.jsx";
+import SearchPage from "./pages/Search/SearchPage.jsx";
 
 export const UserStateContext = createContext();
 
@@ -52,6 +53,7 @@ function App() {
             path="/likedcommentlist"
             element={<UserCommentList type="liked" />}
           />
+          <Route path="/search" element={<SearchPage />} />
         </Routes>
       </UserStateContext.Provider>
     </>

@@ -3,6 +3,7 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../App";
 import LogoImg from "../assets/NAEGA_BOX_LOGO7.png";
+import SearchBar from "./SearchBar";
 
 const navBar = [
   { id: 0, menu: "홈", url: "/" },
@@ -68,7 +69,7 @@ const Header = ({ type }) => {
         </div>
 
         <div className="menu_right">
-          <input type="text" placeholder="검색" className="searchBar" />
+          <SearchBar />
           {currentUser && currentUser.user ? (
             <Link to={`/user/${currentUser.user.uid}`}>
               {currentUser.user.displayName}님

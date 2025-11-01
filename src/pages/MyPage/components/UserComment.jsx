@@ -36,24 +36,14 @@ const UserComment = ({ type }) => {
 
   // 코멘트 삭제 후 다시 리렌더링 하는 함수
   const refreshComments = async () => {
-    // let updateList;
     if (type === "liked") {
       // 좋아요 누른거 리렌더링 (좋아요 취소했을경우)
-      // updateList = await getLikedCommentList(uid);
       setUserComment(await getLikedCommentList(uid));
     } else {
       // 코멘트 삭제 후 다시 리렌더링
-      // updateList = await getUserCommentList(uid);
       setUserComment(await getUserCommentList(uid));
     }
-    // setUserComment(updateList);
   };
-
-  // // 좋아요 취소 후 다시 리렌더링 하는 함수
-  // const refreshLikedComments = async () => {
-  //   console.log("좋아요취소?", updateLikedList);
-  //   setLikedComment(updateLikedList);
-  // };
 
   return (
     <div className="UserComment">

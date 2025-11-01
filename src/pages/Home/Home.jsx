@@ -21,6 +21,10 @@ const Home = () => {
     let data = await kmdbRes.json();
     let arrayData = data.Data[0].Result;
 
+    arrayData = arrayData.filter((item) => {
+      return !item.genre?.includes("에로");
+    });
+
     const getSortedData = arrayData.toSorted((a, b) => {
       return Number(a.repRlsDate) - Number(b.repRlsDate);
     });

@@ -61,32 +61,6 @@
   align-items: center;
 }
 
-.Header .searchBar {
-  border: none;
-  padding: 5px;
-  background-color: rgba(0, 0, 0, 0); /* 검정 배경, 50% 투명 */
-  border-bottom: 1px solid white;
-  color: white;
-  height: 35px;
-  width: 250px;
-
-  transition: border-color 0.3s ease; /*border-color가 0.3초 동안 부드럽게 바뀜 */
-
-  background-image: url("/src/assets/search-icon-white.png");
-  background-repeat: no-repeat;
-  background-position: 5px center;
-  padding-left: 30px;
-  background-size: 15px;
-}
-.Header .searchBar::placeholder {
-  color: white;
-}
-
-.Header .searchBar:focus {
-  outline: none;
-  border-bottom: 1px solid red;
-}
-
 .Header .nav .menu_left > a:hover,
 .Header .nav .menu_left > a.active {
   color: white;
