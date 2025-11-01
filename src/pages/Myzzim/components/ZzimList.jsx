@@ -38,7 +38,7 @@ const ZzimList = () => {
 
     getFavoriteMovies();
   }, [user]);
-  console.log("찜리스트", isMvFavList);
+  // console.log("찜리스트", isMvFavList);
 
   //   const data = useMovieDetail({ isMvFavList });
   //   if (!data) {
