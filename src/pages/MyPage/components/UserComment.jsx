@@ -35,21 +35,7 @@ const UserComment = ({ type }) => {
   }, [user, type]);
 
   // 코멘트 삭제 후 다시 리렌더링 하는 함수
-  const refreshComments = async (removedComment) => {
-    // ID가 전달되면 즉시 상태에서 제거 (좋아요 취소의 경우)
-    // if (removedComment) {
-    //   setUserComment((prev) =>
-    //     prev.filter(
-    //       (comment) =>
-    //         !(
-    //           comment.movieId === removedComment.movieId &&
-    //           comment.uid === removedComment.uid
-    //         )
-    //     )
-    //   );
-    //   return;
-    // }
-
+  const refreshComments = async () => {
     // let updateList;
     if (type === "liked") {
       // 좋아요 누른거 리렌더링 (좋아요 취소했을경우)
