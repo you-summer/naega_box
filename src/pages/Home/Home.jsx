@@ -38,7 +38,7 @@ const Home = () => {
       <Header type={"HOME"} />
       <Carousel />
       <HomeMovieCarousel text={"오늘의 영화는?"} data={movieCdata} />
-      <div>인기코멘트</div>
+      {/* <div>인기코멘트</div> */}
       <HomeMovieCarousel text={"개봉 예정작"} data={movieComing} />
     </div>
   );

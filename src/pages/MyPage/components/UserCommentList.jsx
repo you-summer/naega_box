@@ -44,6 +44,7 @@ const UserCommentList = ({ isUserComment, refreshComments, type, uid }) => {
         confirmButtonText: "확인!",
       });
       await refreshComments();
+      // refreshComments(isUserComment); // ID를 파라미터로 전달
     }
   };
 
