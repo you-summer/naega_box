@@ -12,7 +12,7 @@ const SearchList = () => {
 
   const KMDB_API_KEY = import.meta.env.VITE_KMDB_API_KEY;
   const getMovieData = async () => {
-    const kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&RANK=0&listCount=30&ratedYn=Y&title=${query}&ServiceKey=${KMDB_API_KEY}`;
+    const kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&listCount=100&ratedYn=Y&title=${query}&sort=RANK,1&ServiceKey=${KMDB_API_KEY}`;
     const kmdbRes = await fetch(kmdbUrl);
     const data = await kmdbRes.json();
     let movieArrayData = data?.Data[0]?.Result;
@@ -42,7 +42,9 @@ const SearchList = () => {
 
   return (
     <div className="SearchList">
-      <h2>검색 결과</h2>
+      <h2>
+        <span>{query} </span>검색 결과
+      </h2>
       <div className="searchListDiv">
         {searchMovie?.length === 0 ? (
           <div>[{query}]검색 결과 없음!</div>
