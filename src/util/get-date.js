@@ -38,3 +38,17 @@ export const getTomorrowAndOneMonthLater = () => {
     oneMonthLater: formatDate(oneMonthLater),
   };
 };
+
+// 개봉일날짜 새로 포맷해서 출력 0000.00.00
+export const getRelFormatDate = (date) => {
+  if (!date) return "";
+  let year = date.slice(0, 4);
+  let month = date.slice(4, 6);
+  let day = date.slice(6, 8);
+
+  if (day === "00") {
+    return `${year}.${month}`;
+  }
+
+  return `${year}.${month}.${day}`;
+};

@@ -1,0 +1,14 @@
+.Upcoming {
+  padding: 2% 5%;
+}
+
+.Upcoming .upcomig_title {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.Upcoming .upcomig_title > div {
+  font-size: 0.8rem;
+  color: rgb(128, 128, 128);
+}

@@ -31,6 +31,9 @@
 .HomeMovieCarousel .homeMovieCarousel_title {
   padding: 30px 50px;
   font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .HomeMovieCarousel .swiper-slide {
@@ -89,4 +92,11 @@
   text-decoration: none;
   color: rgb(22, 22, 22);
   font-size: 1rem;
+}
+
+.HomeMovieCarousel .homeMovieCarousel_more {
+  font-size: 0.8rem;
+  color: rgba(128, 128, 128);
+  cursor: pointer;
+  text-decoration: none;
 }

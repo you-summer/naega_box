@@ -14,6 +14,7 @@ import { auth } from "./api/firebaseAuth.js";
 import MovieDetail from "./pages/MovieDetail/MovieDetail.jsx";
 import UserCommentList from "./pages/MyPage/components/UserComment.jsx";
 import SearchPage from "./pages/Search/SearchPage.jsx";
+import Upcoming from "./pages/Movie/components/Upcoming.jsx";
 
 export const UserStateContext = createContext();
 
@@ -54,6 +55,7 @@ function App() {
             element={<UserCommentList type="liked" />}
           />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/upcoming" element={<Upcoming />} />
         </Routes>
       </UserStateContext.Provider>
     </>

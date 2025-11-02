@@ -9,28 +9,25 @@ import "swiper/css/navigation";
 
 import "./HomeMovieCarousel.css";
 import { Link } from "react-router-dom";
+import { getRelFormatDate } from "../util/get-date";
 
-const HomeMovieCarousel = ({ text, data }) => {
+const HomeMovieCarousel = ({ text, data, type }) => {
   const movieData = data;
   // console.log("오류?", movieData);
-
-  const formatDate = (date) => {
-    if (!date) return "";
-    let year = date.slice(0, 4);
-    let month = date.slice(4, 6);
-    let day = date.slice(6, 8);
-
-    if (day === "00") {
-      return `${year}.${month}`;
-    }
-
-    return `${year}.${month}.${day}`;
-  };
 
   return (
     <>
       <div className="HomeMovieCarousel">
-        <div className="homeMovieCarousel_title">{text}</div>
+        <div className="homeMovieCarousel_title">
+          {text}
+          {type === "coming" ? (
+            <Link to={"/upcoming"} className="homeMovieCarousel_more">
+              <div className="homeMovieCarousel_more">더 보기</div>
+            </Link>
+          ) : (
+            ""
+          )}
+        </div>
         <Swiper
           modules={[Virtual, Navigation, Pagination, EffectFade]}
           // onSwiper={setSwiperRef}
@@ -72,7 +69,7 @@ const HomeMovieCarousel = ({ text, data }) => {
                         className="movie_img"
                       />
                       <div>
-                        {data.length <= 10 ? (
+                        {type === "boxOffice" ? (
                           <>
                             <span className="index">{index + 1}위</span>
                           </>
@@ -85,7 +82,9 @@ const HomeMovieCarousel = ({ text, data }) => {
                           {item.title}
                         </div>
                         <div className="homeMovieCarousel_content_relDate">
-                          개봉일 : {formatDate(item.repRlsDate)}
+                          {getRelFormatDate(item.repRlsDate)
+                            ? `개봉일 : ${getRelFormatDate(item.repRlsDate)}`
+                            : ""}
                         </div>
                       </div>
                     </div>
