@@ -20,7 +20,8 @@ export const showLoadingAlert = ({ title, text }) => {
 export const showSuccessAlert = async ({ title, text, confirmButtonText }) => {
   return Swal.fire({
     title: title,
-    text: text,
+    // text: text,
+    html: text,
     icon: "success",
     confirmButtonText: confirmButtonText,
     confirmButtonColor: "rgb(100, 201, 100)",

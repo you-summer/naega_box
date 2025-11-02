@@ -27,6 +27,7 @@ export const useGoogleAuth = (mode) => {
         await showSuccessAlert({
           title: "성공적으로 로그인되었습니다 !",
           text: `${googleUserName}님 반갑습니다!`,
+          confirmButtonText: "메인으로",
         });
         nav("/", { replace: true });
       }
