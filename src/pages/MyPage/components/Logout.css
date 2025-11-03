@@ -1,0 +1,21 @@
+.Logout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0px 20px;
+  padding-bottom: 20px;
+}
+
+.Logout .mypage_button {
+  padding: 2%;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: gray;
+  cursor: pointer;
+}
+
+.Logout .mypage_button:active {
+}

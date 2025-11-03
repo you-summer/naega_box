@@ -15,12 +15,12 @@ import {
 
 const UserInfo = () => {
   const { user } = useContext(UserStateContext);
-  console.log("UserInfo : ", user);
+  // console.log("UserInfo : ", user);
   let userImg = user?.photoURL;
   let uid = user?.uid;
 
   const [userDoc2, setUserDoc] = useState([]);
-  console.log(userDoc2, "userDoc2");
+  // console.log(userDoc2, "userDoc2");
   const [isUserComment, setUserComment] = useState();
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const UserInfo = () => {
       };
     });
 
-    console.log("내가쓴코멘트??", userComment);
+    // console.log("내가쓴코멘트??", userComment);
     await setUserComment(userComment);
   };
 

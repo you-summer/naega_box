@@ -25,7 +25,7 @@ const Movie = () => {
     getMv();
   }, []);
 
-  console.log("박찬욱 ", mvdata);
+  // console.log("박찬욱 ", mvdata);
 
   return (
     <div>

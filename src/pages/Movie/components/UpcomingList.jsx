@@ -6,7 +6,7 @@ import noImage from "../../../assets/noImage.png";
 
 const UpcomingList = () => {
   const { movieComing } = useKmdbMVComingSoon();
-  console.log(movieComing);
+  //   console.log(movieComing);
 
   return (
     <div className="UpcomingList">

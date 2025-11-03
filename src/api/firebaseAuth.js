@@ -76,9 +76,9 @@ export const login = async (EMAIL, PWD) => {
 export const logout = async () => {
   try {
     await signOut(auth);
-    console.log("로그아웃 됨");
+    // console.log("로그아웃 됨");
   } catch (err) {
-    console.log("로그아웃 실패", err);
+    // console.log("로그아웃 실패", err);
   }
 };
 
@@ -97,8 +97,8 @@ export const userDelete = async () => {
 export const googleSignUp = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
-    console.log("구글회원가입", result);
-    console.log("새회원인지알아보기", getAdditionalUserInfo(result));
+    // console.log("구글회원가입", result);
+    // console.log("새회원인지알아보기", getAdditionalUserInfo(result));
     const isNewUser = getAdditionalUserInfo(result).isNewUser;
     const googleUserName = getAdditionalUserInfo(result).profile.name;
     const googoleProfilePic = getAdditionalUserInfo(result).profile.picture;
@@ -135,7 +135,7 @@ export const kakaoSignUp = async (idToken) => {
   const result = await signInWithCredential(getAuth(), credential);
   const user = result.user;
   const photoURL = user.photoURL; //프로필사진
-  console.log("result", result, ", user", user);
+  // console.log("result", result, ", user", user);
 
   // firebase db에 user저장하기
   const userDoc = await getDoc(doc(db, "user", user.uid)); // firebase db에 uid가 있는지 확인하기
@@ -161,7 +161,7 @@ export const pwdReset = async (email) => {
     (error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
+
       alert(errorCode, errorMessage, error);
     };
   }

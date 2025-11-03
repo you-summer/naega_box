@@ -10,9 +10,9 @@ import {
 // import { UserCommentListStateContext } from "../MyPage";
 
 const UserComment = ({ type }) => {
-  console.log("타입은?", type);
+  // console.log("타입은?", type);
   const { user } = useContext(UserStateContext);
-  console.log("UserInfo : ", user);
+  // console.log("UserInfo : ", user);
   let uid = user?.uid;
 
   const [isUserComment, setUserComment] = useState([]);

@@ -21,7 +21,7 @@ const Chart = () => {
   }
   let scoreAve = ave.toFixed(1);
 
-  console.log(scoreAve, "별점평균");
+  // console.log(scoreAve, "별점평균");
 
   useEffect(() => {
     // 별점 총 갯수

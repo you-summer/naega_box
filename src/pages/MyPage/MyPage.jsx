@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Header from "../../components/Header";
-import Logout from "../../components/Logout";
+import Logout from "./components/Logout";
 import Chart from "./components/Chart";
 import LikedComments from "./components/LikedComments";
 import UserInfo from "./components/UserInfo";
@@ -13,7 +13,7 @@ export const UserCommentListStateContext = createContext();
 
 const MyPage = () => {
   const { user } = useContext(UserStateContext);
-  console.log("UserInfo : ", user);
+  // console.log("UserInfo : ", user);
   let uid = user?.uid;
 
   const [isUserComment, setUserComment] = useState([]);

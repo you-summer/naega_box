@@ -16,14 +16,14 @@ const ZzimList = () => {
   useEffect(() => {
     // firebase db에서 유저의 favoriteMovies[] 가져오기
     const getFavoriteMovies = async () => {
-      console.log("useEffect 실행", user);
+      // console.log("useEffect 실행", user);
       if (!user) {
         return;
       }
       const userRef = doc(db, "user", user.uid);
 
       const userDB = await getDoc(userRef);
-      console.log("ref", userDB);
+      // console.log("ref", userDB);
       if (userDB.exists()) {
         // 문서 존재여부 확인
 

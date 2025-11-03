@@ -19,7 +19,6 @@ const MovieComment = () => {
     content: "",
     score: 0,
   });
-  console.log("??", input);
 
   // 별을 5개로 표현하기 위한 배열
   const starArray = [0, 1, 2, 3, 4];
@@ -75,7 +74,7 @@ const MovieComment = () => {
   };
 
   const onchangeInput = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let name = e.target.name;
     let value = e.target.value;
 

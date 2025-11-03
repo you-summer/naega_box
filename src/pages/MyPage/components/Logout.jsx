@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { logout, userDelete } from "../api/firebaseAuth";
-import { UserStateContext } from "../App";
+import { logout, userDelete } from "../../../api/firebaseAuth";
+import { UserStateContext } from "../../../App";
 import { useNavigate } from "react-router-dom";
-import { showConfirmAlert } from "../util/get-sweet-alert";
+import { showConfirmAlert } from "../../../util/get-sweet-alert";
+import "./Logout.css";
 
 const Logout = () => {
   const { user, setUser } = useContext(UserStateContext);
   const nav = useNavigate();
-  console.log("logoutPage", user);
+  // console.log("logoutPage", user);
   const KAKAO_LOGOUT_REDIRECT_URI = import.meta.env
     .VITE_KAKAO_LOGOUT_REDIRECT_URI;
   const KAKAO_KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
@@ -44,9 +45,13 @@ const Logout = () => {
   };
 
   return (
-    <div>
-      <button onClick={onClickLogout}>로그아웃!!!!!</button>
-      <button onClick={onClickUserDelete}>회원탈퇴</button>
+    <div className="Logout">
+      <button onClick={onClickLogout} className="mypage_button">
+        로그아웃
+      </button>
+      <button onClick={onClickUserDelete} className="mypage_button">
+        회원탈퇴
+      </button>
     </div>
   );
 };

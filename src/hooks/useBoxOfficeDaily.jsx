@@ -44,7 +44,7 @@ const useBoxOfficeDaily = () => {
 
     const movies = await Promise.all(kmdbBoxOfficeDetails);
     setMovieCdata(movies);
-    console.log("모든영화", movies);
+    // console.log("모든영화", movies);
   };
 
   //

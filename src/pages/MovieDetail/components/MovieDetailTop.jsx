@@ -6,7 +6,7 @@ import noImage from "../../../assets/noImage.png";
 
 const MovieDetailTop = () => {
   const data = useContext(MovieDatailStateContext);
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="MovieDetailTop">

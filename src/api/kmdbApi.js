@@ -24,7 +24,7 @@ export const getXmasMv = async () => {
     item.title = item.title.replace(/!HS|!HE/g, "");
   });
 
-  console.log("크리므스마스", data);
+  //   console.log("크리므스마스", data);
 
   return data;
 };

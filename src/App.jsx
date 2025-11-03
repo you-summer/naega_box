@@ -21,7 +21,7 @@ export const UserStateContext = createContext();
 function App() {
   const [user, setUser] = useState(auth.currentUser); // null 로그인안됨
 
-  console.log("auth", auth);
+  // console.log("auth", auth);
 
   useEffect(() => {
     // 로그인 상태 변화를 실시간 감시
