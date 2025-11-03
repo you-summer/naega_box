@@ -9,6 +9,7 @@ export const useGoogleAuth = (mode) => {
     await showSuccessAlert({
       title: "회원가입 완료!",
       text: `${googleUserName}님 회원가입을 축하합니다`,
+      confirmButtonText: "메인으로",
     });
     nav("/", { replace: true });
   }

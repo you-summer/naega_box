@@ -16,6 +16,7 @@ import {
 } from "../../../util/get-sweet-alert.js";
 import { useGoogleAuth } from "../../../hooks/useGoogleAuth.jsx";
 import Button from "../../../components/Button.jsx";
+import pageLogo from "../../../assets/NAEGA_BOX_LOGO7.png";
 
 const LoginForm = () => {
   const KAKAO_REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
@@ -108,11 +109,7 @@ const LoginForm = () => {
         <div className="LoginForm_div">
           <div className="logo_div">
             <Link to={"/"}>
-              <img
-                src="src/assets/NAEGA_BOX_LOGO7.png"
-                alt=""
-                className="logo"
-              />
+              <img src={pageLogo} alt="" className="logo" />
             </Link>
           </div>
 
