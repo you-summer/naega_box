@@ -10,7 +10,7 @@ const KakaoAuthLogout = () => {
 
   useEffect(() => {
     const mode = new URL(document.URL).searchParams.get("state");
-    console.log("모드: ", mode);
+    // console.log("모드: ", mode);
     let action;
     if (mode === "logout") {
       action = "로그아웃";
