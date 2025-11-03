@@ -11,11 +11,17 @@ const Chart = () => {
 
   // console.log("chart", isUserComment);
   // console.log("길이", isUserComment.length);
+  // console.log("scoreSum", scoreSum);
   // console.log("웅", isUserComment[i]?.score);
 
   // 별점 평균
-  let ave = Number(scoreSum) / Number(isUserComment.length);
+  let ave = 0;
+  if (isUserComment.length > 0) {
+    ave = Number(scoreSum) / Number(isUserComment.length);
+  }
   let scoreAve = ave.toFixed(1);
+
+  console.log(scoreAve, "별점평균");
 
   useEffect(() => {
     // 별점 총 갯수
