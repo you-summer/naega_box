@@ -52,7 +52,7 @@ const LoginForm = () => {
         nav("/", { replace: true });
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
 
       if (err.message === "이메일 인증이 필요합니다") {
         showErrorAlert({
@@ -95,7 +95,7 @@ const LoginForm = () => {
         nav("/", { replace: true });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       showErrorAlert({
         title: "실패",
         text: "해당 이메일을 찾을 수 없거나 오류가 발생했습니다.",

@@ -32,7 +32,7 @@ const JoinForm = () => {
   const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     const { NAME, EMAIL, PWD } = data;
 
     try {
@@ -60,8 +60,8 @@ const JoinForm = () => {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("errorCode", errorCode);
-      console.log("errorMessage", errorMessage);
+      // console.log("errorCode", errorCode);
+      // console.log("errorMessage", errorMessage);
       showErrorAlert({
         title: "회원가입 실패",
         text: "이미 사용중인 이메일입니다.",

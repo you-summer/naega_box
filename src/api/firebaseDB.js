@@ -67,7 +67,7 @@ export const addComment = async (docid, user, input) => {
 
 // firebase DB에서 comment 삭제
 export const commentDelete = async (comment) => {
-  console.log("코멘트머에여?", comment);
+  // console.log("코멘트머에여?", comment);
   await deleteDoc(doc(db, "ratings", `${comment.movieId}_${comment.uid}`));
   return true;
 };
