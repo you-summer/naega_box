@@ -50,6 +50,7 @@ const MovieDetailZzim = ({ DOCID }) => {
       return showConfirmAlert({ text: "로그인 후 이용 가능합니다!" });
     }
     const userRef = doc(db, "user", user.uid);
+
     if (isZzim) {
       updateDoc(userRef, {
         favoriteMovies: arrayRemove(DOCID),
