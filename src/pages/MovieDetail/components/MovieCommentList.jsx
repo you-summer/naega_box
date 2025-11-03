@@ -13,7 +13,6 @@ import { commentDelete, commentLiked } from "../../../api/firebaseDB";
 import defaultImg from "../../../assets/default_profile_image.jpg";
 
 const MovieCommentList = ({ comment, refreshComments }) => {
-  console.log("잘넘어왔나?", comment);
   const user = useContext(UserStateContext);
   const realUser = user?.user;
 

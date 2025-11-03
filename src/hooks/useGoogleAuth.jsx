@@ -17,9 +17,9 @@ export const useGoogleAuth = (mode) => {
   const onClickGoogleAuth = async () => {
     const { result, isNewUser, googleUserName, googoleProfilePic } =
       await googleSignUp();
-    console.log("로그인결과", result);
-    console.log("새유저", isNewUser);
-    console.log("구글유저이름", googleUserName);
+    // console.log("로그인결과", result);
+    // console.log("새유저", isNewUser);
+    // console.log("구글유저이름", googleUserName);
 
     if (mode === "login") {
       if (isNewUser === true) {

@@ -25,7 +25,7 @@ const SearchBar = () => {
       return;
     }
 
-    console.log("초기화?", search);
+    // console.log("초기화?", search);
     nav(`/search?query=${search}`);
     setSearch("");
   };

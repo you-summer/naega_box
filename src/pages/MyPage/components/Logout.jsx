@@ -29,7 +29,7 @@ const Logout = () => {
   };
 
   const onClickUserDelete = async () => {
-    console.log("회원탈퇴버튼", user);
+    // console.log("회원탈퇴버튼", user);
     const result = await showConfirmAlert({
       title: "정말 탈퇴하시겠습니까?",
       text: "되돌릴 수 없습니다",

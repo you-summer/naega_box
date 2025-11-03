@@ -35,7 +35,7 @@ const SearchList = () => {
     setSearchMovie(movieArrayData);
   };
 
-  console.log("검색어데이터", searchMovie);
+  // console.log("검색어데이터", searchMovie);
   useEffect(() => {
     getMovieData();
   }, [query]);
