@@ -157,4 +157,26 @@ export default useBoxOfficeDaily;
 4. **결과**
 - `Promise.all()` 사용으로 모든 비동기 요청이 병렬로 처리되어 API의 응답 속도도 개선됐다.
 - 각 영화의 상세 데이터가 정상적으로 렌더링 됨
-- 더 이상 `Promise{<pending>}` 가 뜨지 않음 
+- 더 이상 `Promise{<pending>}` 가 뜨지 않음
+
+
+### ❗undefined 옵셔널 체이닝
+1. **문제 상황**
+   - KMDB API, KOBIS API에서 가져온 영화 데이터들은 구조가 꽤 복잡했었다. 예를들면 `data.data[0].result[0].staffs.staff` 이런 식으로 여러 중첩 객체가 있었다.
+
+```javascript
+const actors = data.staffs.staff.filter((item) => item.staffRoleGroup === "출연")
+```
+이런 코드가 있었을때 `data.staffs`가 undefined인 경우 바로 에러가 났었다
+```javascript
+TypeError: Cannot read properties of undefined (reading 'staff')
+```
+
+2. **해결 방법**
+   - 이 오류의 핵심은 존재하지 않는 객체 속성에 바로 접근한 것이 문제였다
+   - 그래서 `?.`옵셔널 체이닝을 추가해서 안전하게 접근했다
+```javascript
+const actors = data?.staffs?.staff?.filter(
+  (item) => item.staffRoleGroup === "출연"
+);
+```
