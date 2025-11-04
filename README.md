@@ -1,4 +1,4 @@
-<img width="722" height="905" alt="image" src="https://github.com/user-attachments/assets/c72c68d2-f8f5-4746-a59a-a320559a3066" /><img width="396" height="573" alt="image" src="https://github.com/user-attachments/assets/b9d45f6e-8c20-4a0d-8cfd-f7ca3770d989" /># 🍿 Naega Box
+# 🍿 Naega Box
 <img width="1200" height="630" alt="naegaboxThumbnail" src="https://github.com/user-attachments/assets/1a03b9d2-cc3a-42e1-be82-9cca0940b825" />
 
 React로 만든 영화 검색, 리뷰 커뮤니티 웹입니다.
@@ -37,6 +37,7 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
 사용자 코멘트 목록, 좋아요한 코멘트, 찜한 영화, 차트를 통한 나의 별점 순위
 <img width="780" height="1403" alt="마이페이지" src="https://github.com/user-attachments/assets/167b1086-49aa-437c-b5c5-120ed79e1f05" />
 <img width="743" height="895" alt="image" src="https://github.com/user-attachments/assets/7e679af9-937e-4a43-aaa4-531d68e9807c" />
+<img width="722" height="905" alt="image" src="https://github.com/user-attachments/assets/c72c68d2-f8f5-4746-a59a-a320559a3066" /><img width="396" height="573" alt="image" src="https://github.com/user-attachments/assets/b9d45f6e-8c20-4a0d-8cfd-f7ca3770d989" />
 <img width="722" height="905" alt="image" src="https://github.com/user-attachments/assets/010031c9-5b57-4843-8e6d-4efdca949f13" />
 
 ### 검색페이지
