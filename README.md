@@ -50,20 +50,25 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
 ---
 
 ## 🛠️ 사용 기술
+#### Frontend
 - React (Vite 기반)
   - useState / useEffect / Context API / 커스텀 훅 활용
   - React Router (SPA 구현)
-- React-hook-form
 - JavaScript (ES6+)  
 - CSS / SCSS  
-- SweetAlert2
-- Chart.js
-- React Router (페이지 전환 및 SPA 구현)
-- Vercel (배포)
+- **라이브러리**
+  - React-hook-form
+  - SweetAlert2
+  - Chart.js
+ 
+#### Backend & Auth
+- **Firebase**
+  - Authentication (Google 로그인)
+  - Firestore (유저 정보, 코멘트, 좋아요 데이터)
+- **Kakao Login API** (OAuth 인증)
 
-- Firebase (회원가입 및 유저정보, 코멘트데이터, 좋아요 데이터 저장)
-- Firebase Authentication (Google 로그인)
-- kakao Login API (카카오 Oauth 인증)
+#### Deploy
+- Vercel
 
 ---
 
