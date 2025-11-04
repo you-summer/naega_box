@@ -60,6 +60,7 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
   - React-hook-form
   - SweetAlert2
   - Chart.js
+  - Swiper
  
 #### Backend & Auth
 - **Firebase**
