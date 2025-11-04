@@ -25,6 +25,13 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
 
 ### 코멘트 작성
 코멘트 작성, 별점 부여 기능
+<img width="882" height="261" alt="image" src="https://github.com/user-attachments/assets/9ca2703f-a778-4cdb-91da-e5fe127a8e70" />
+
+### 찜 기능
+<img width="396" height="573" alt="image" src="https://github.com/user-attachments/assets/76ca1fd5-d312-488e-9b06-3b3ad0365bf6" />
+<img width="392" height="563" alt="image" src="https://github.com/user-attachments/assets/49bd4f0e-d57b-4be3-ab15-c33a4801d132" />
+
+
 
 ### 마이페이지
 사용자 코멘트 목록, 좋아요한 코멘트, 찜한 영화, 차트를 통한 나의 별점 순위
