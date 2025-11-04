@@ -180,3 +180,15 @@ const actors = data?.staffs?.staff?.filter(
   (item) => item.staffRoleGroup === "출연"
 );
 ```
+---
+##🔗 블로그 기록
+- [트러블슈팅] React Hook Form + useRef 충돌 (https://blog.naver.com/jojoor201/223992801476)
+- [React] 프로젝트에 Kakao 로그인 구현하기 (https://blog.naver.com/jojoor201/223987861086)
+- [React] Firebase를 활용한 회원가입 기능 구현(https://blog.naver.com/jojoor201/223983242559)
+- [React] react-hook-form을 이용한 회원가입 입력 폼 만들기(https://blog.naver.com/jojoor201/223983205401)
+
+
+---
+## 💭 느낀점
+
+
