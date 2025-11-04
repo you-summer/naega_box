@@ -80,3 +80,81 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
 
 ## ⚡트러블슈팅
 ### ❗map 내부 비동기 처리 시 Promise 반환 문제
+1. **문제 상황**
+   - `map` 안에서 `async` 함수를 사용하여 각 영화의 디테일한 정보를 KMDB API로 부터 받아오려고 했으나, 콘솔에 출력된 결과가 전부 `promise {<pending>}` 으로 나타났다.
+
+2. **원인 분석**
+   - `배열.map()`은 비동기 함수를 인자로 받더라도 동기적으로 동작하고 내부의 `async` 함수는 항상 Promise 를 반환한다! 따라서 map의 반환값은 `Promise`의 배열이 되고, 이 배열자체를 `await`한다고 해도 각각의 비동기 작업이 완료되기 전이라 `pending` 상태로 남아있게 된다.
+
+3. **해결 방법**
+   - `Promise.all()`을 사용해 `map`내부의 비동기 요청들이 완료된 후에 결과를 한번에 받아올수 있도록 수정했다.
+  
+아래는 수정 후 정상 작동한 코드이다
+
+```javascript
+import { useEffect, useState } from "react";
+import { getYesterday } from "../util/get-date.js";
+
+const useBoxOfficeDaily = () => {
+  const KOBIS_API_KEY = import.meta.env.VITE_KOBIS_API_KEY;
+  const KMDB_API_KEY = import.meta.env.VITE_KMDB_API_KEY;
+
+  const getBoxOfficeAndDetail = async () => {
+    // 1. 일일 박스오피스 1~10위 데이터 요청
+    let targetDt = getYesterday();
+    let boxUrl = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOBIS_API_KEY}&targetDt=${targetDt}`;
+    let boxRes = await fetch(boxUrl);
+    let boxData = await boxRes.json();
+    const boxOfficeRank = boxData.boxOfficeResult.dailyBoxOfficeList;
+
+    // 2. 각 영화 제목을 기반으로 KMDB에서 상세 정보 가져오기
+    const kmdbBoxOfficeDetails = boxOfficeRank.map(async (boxOffice) => {
+      let movieTitle = boxOffice.movieNm;
+      let apiMovieTitle = encodeURIComponent(movieTitle);
+      let relDate = boxOffice.openDt.replace(/-/g, "");
+      let kmdbUrl = `https://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&title=${apiMovieTitle}&releaseDts=${relDate}&ServiceKey=${KMDB_API_KEY}`;
+      let kmdbRes = await fetch(kmdbUrl);
+      let data = await kmdbRes.json();
+
+      // 3. 필요한 데이터만 가공
+      let movieData = data.Data[0].Result[0];
+      let still = movieData.stlls;
+      let stillFirstImage = still.split("|")[0];
+      let stillImg = stillFirstImage
+        .replace("thm/01", "still")
+        .replace("tn_", "")
+        .replace(".jpg", "_01.jpg")
+        .replace(".JPG", "_01.jpg");
+
+      let poster = movieData.posters;
+      let posterFirstImage = poster.split("|")[0];
+      let DOCID = movieData.DOCID;
+
+      return {
+        ...movieData,
+        title: movieTitle,
+        still: stillImg,
+        posters: posterFirstImage,
+        DOCID: DOCID,
+      };
+    });
+
+    // 4. Promise 배열을 한 번에 처리
+    const movies = await Promise.all(kmdbBoxOfficeDetails);
+    setMovieCdata(movies);
+  };
+
+  const [movieCdata, setMovieCdata] = useState([]);
+  useEffect(() => {
+    getBoxOfficeAndDetail();
+  }, []);
+
+  return { movieCdata };
+};
+
+export default useBoxOfficeDaily;
+```
+4. **결과**
+- `Promise.all()` 사용으로 모든 비동기 요청이 병렬로 처리되어 API의 응답 속도도 개선됐다.
+- 각 영화의 상세 데이터가 정상적으로 렌더링 됨
+- 더 이상 `Promise{<pending>}` 가 뜨지 않음 
