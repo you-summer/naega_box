@@ -7,7 +7,8 @@ React로 만든 영화 검색, 리뷰 커뮤니티 웹입니다.
 Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 통해 영화 정보를 제공합니다.
 
 🟢 배포 사이트: [naega-box.vercel.app]
-(https://naega-box.vercel.app)
+
+
 ---
 
 ## 💻 미리보기
