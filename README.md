@@ -2,9 +2,6 @@
 <img width="1200" height="630" alt="naegaboxThumbnail" src="https://github.com/user-attachments/assets/1a03b9d2-cc3a-42e1-be82-9cca0940b825" />
 
 React로 만든 영화 검색, 리뷰 커뮤니티 웹입니다.
-사용자는 카카오·구글 계정으로 로그인하여
-영화 정보를 조회하고, 코멘트를 작성·평점·좋아요 할 수 있습니다.
-Firebase로 사용자 데이터를 관리하고, KMDB API를 통해 영화 정보를 제공합니다.
 
 🟢 배포 사이트: [https://naega-box.vercel.app/](https://naega-box.vercel.app/)
 
