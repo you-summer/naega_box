@@ -73,7 +73,7 @@ Firebase로 사용자 데이터를 관리하고, 한국영상자료원 API를 �
   - useState / useEffect / Context API / 커스텀 훅 활용
   - React Router (SPA 구현)
 - JavaScript (ES6+)  
-- CSS / SCSS  
+- CSS
 - **라이브러리**
   - React-hook-form
   - SweetAlert2
