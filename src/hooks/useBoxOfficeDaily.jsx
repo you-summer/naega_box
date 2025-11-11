@@ -11,7 +11,7 @@ const useBoxOfficeDaily = () => {
     let boxUrl = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${KOBIS_API_KEY}&targetDt=${targetDt}`;
     let boxRes = await fetch(boxUrl);
     let boxData = await boxRes.json();
-    const boxOfficeRank = boxData.boxOfficeResult.dailyBoxOfficeList;
+    const boxOfficeRank = boxData?.boxOfficeResult?.dailyBoxOfficeList;
     // console.log("박스오피스", boxOfficeRank);
 
     const kmdbBoxOfficeDetails = boxOfficeRank.map(async (boxOffice) => {
